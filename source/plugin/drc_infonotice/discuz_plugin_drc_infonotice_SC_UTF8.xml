@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X1.5]]></item>
+	<item id="Time"><![CDATA[2010-11-11 15:43]]></item>
+	<item id="From"><![CDATA[Discuz! Board (http://localhost/dx1.5/upload/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[DRC - InfoNotice]]></item>
+			<item id="identifier"><![CDATA[drc_infonotice]]></item>
+			<item id="description"><![CDATA[InfoNotice 1.0 介绍：  
+  原插件作者为 体无完肤 版本为2.0适用于Discuz!7.2的,此次升级修改为Discuz! X1.5的.
+原Discuz!7.2下载地址为
+http://www.discuz.net/thread-1452165-1-1.html
+    插件功能：
+    1、如果用户个人资料不完整，则在论坛首页浮动提醒补全信息;
+    2、后台插件开关控制；
+    3、后台开关控制是否开启游客未登录提醒;
+    4、后台可控制哪些个人信息为提醒项]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[drc_infonotice/]]></item>
+			<item id="copyright"><![CDATA[体无完肤 love322093 | bbs.7drc.com]]></item>
+			<item id="version"><![CDATA[1.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[drc_infonotice]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X1.5]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[6]]></item>
+				<item id="title"><![CDATA[个人信息选项]]></item>
+				<item id="description"><![CDATA[设置用户信息完整性信息，每项单独一行。可选内容解释：realname(真实姓名)、gender(性别)、birthyear(生日(年))、birthmonth(生日(月))、birthday(生日(日))、birthprovince(家乡(省))、birthcity(家乡(市))、resideprovince(居住地(省))、residecity(居住地( ...]]></item>
+				<item id="variable"><![CDATA[message]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[realname
+gender
+birthyear
+birthmonth
+birthday
+birthprovince
+birthcity
+resideprovince
+residecity
+residedist
+residecommunity
+msn
+taobao
+site
+alipay
+qq
+field1
+field2
+field3
+field4
+field5
+field6
+field7
+field8
+]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[5]]></item>
+				<item id="title"><![CDATA[头像未上传提醒]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[avatar]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[插件开关]]></item>
+				<item id="description"><![CDATA[设置是否开启个人信息补全提醒]]></item>
+				<item id="variable"><![CDATA[radio]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="3">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[悬停时间]]></item>
+				<item id="description"><![CDATA[设置提醒信息悬停时间，单位：秒]]></item>
+				<item id="variable"><![CDATA[time]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[5]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="4">
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[游客未登录提醒]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[guest]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="5">
+				<item id="displayorder"><![CDATA[4]]></item>
+				<item id="title"><![CDATA[允许提示的群组]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[groups]]></item>
+				<item id="type"><![CDATA[groups]]></item>
+				<item id="extra"><![CDATA[]]></item>
+				<item id="__value">
+					<item id="0"><![CDATA[10]]></item>
+					<item id="1"><![CDATA[11]]></item>
+					<item id="2"><![CDATA[12]]></item>
+					<item id="3"><![CDATA[13]]></item>
+					<item id="4"><![CDATA[14]]></item>
+					<item id="5"><![CDATA[15]]></item>
+					<item id="6"><![CDATA[16]]></item>
+					<item id="7"><![CDATA[17]]></item>
+					<item id="8"><![CDATA[18]]></item>
+					<item id="9"><![CDATA[19]]></item>
+					<item id="10"><![CDATA[1]]></item>
+					<item id="11"><![CDATA[2]]></item>
+					<item id="12"><![CDATA[3]]></item>
+					<item id="13"><![CDATA[8]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="guest"><![CDATA[提醒您，您还没有登录，登录后浏览更多内容！]]></item>
+				<item id="avatar"><![CDATA[提醒您，您还没有头像，请尽快上传头像]]></item>
+				<item id="msg"><![CDATA[ 提醒您，请到您的个人资料里填写： ]]></item>
+				<item id="err"><![CDATA[ 插件后台配置错误！]]></item>
+			</item>
+		</item>
+	</item>
+</root>

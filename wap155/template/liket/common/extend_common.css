@@ -1,0 +1,51 @@
+/*Modify*/
+#hd .wp { padding:0; }
+#hd { margin-bottom:0; }
+#nv { padding-top:3px; }
+.hdc { padding-top:6px; }
+#ft { border-top:1px dashed #DBEDF5; padding:10px 0; }
+#hd .wp .a_h { padding:5px 0; }
+#hd h2 { padding: 0 20px 3px 0; }
+
+.pg a, .pgb a { background-color:#f2f2f2; }
+.pg strong { background-color:#3366cc; color:#fff; }
+
+#nv li { background: none; }
+
+.lk { margin-bottom:0; }
+.mtn { margin-top:0 !important; }
+
+.xfs_nbd .block { margin-bottom: 0; }
+
+.a_t { background-color:#f7f7f7; }
+
+.ct2 .mn { width: 710px; }
+.ct2 .sd { width: 220px; }
+.appl { margin-bottom: 10px; padding: 6px 10px; width: 115px; }
+.ct2_a .mn { width: 790px; }
+.ct3_a .mn { width: 545px; }
+.ct3_a .sd { width: 220px; }
+
+/*Additional*/
+.wp { width:980px; }
+.pg_index .wp, .pg_forumdisplay .wp, .pg_viewthread .wp { width:99%; max-width:1120px; min-width:960px; }
+
+#wpi { background-color:#dbedf5; padding:10px; }
+
+#ct { background-color:#fff; padding:10px; }
+.pg_index #ct, .pg_forumdisplay #ct, .pg_viewthread #ct { background-color:#DBEDF5; padding:0; }
+
+#ftappend { text-align:left; font-size:10px; color:#ccc; line-height:40px; }
+
+.hdc { padding-left:10px;}
+#um { padding-right:70px;}
+
+.a_pt, .a_pb {
+	background: none;
+	margin-bottom: 6px;
+	padding-left: 0;
+}
+
+.ttp a, .ttp strong {
+	background-color:#f2f2f2;
+}

@@ -1,0 +1,208 @@
+<!--{subtemplate common/header}-->
+<div id="wp" class="wp">
+<style id="diy_style" type="text/css"></style>
+<script type="text/javascript">
+function fturnit(o,i){
+ document.getElementById("fright"+o).className="onmeseover";
+ document.getElementById("frightChild"+o).className="nohidden";
+ document.getElementById("fright"+i).className="onmeseout";
+ document.getElementById("frightChild"+i).className="hidden";	 
+}
+</script>
+<style>#qunchong17{width:342px;float:left;}.slideshow span.title {text-indent:0px;}</style>
+<div id="scbar" class="bm cl">
+<form id="scform" class="z" method="post" autocomplete="off" onsubmit="searchFocus($('srchtxt'))" action="search.php?searchsubmit=yes" target="_blank">
+<input type="hidden" name="mod" value="search" >
+<input type="hidden" name="formhash" value="5c290cd5" >
+<input type="hidden" name="srchtype" value="title" >
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><input type="text" name="srchtxt" id="srchtxt" value="请输入搜索内容" autocomplete="off" onfocus="searchFocus(this);" onblur="searchBlur(this);" ></td>
+<td>&nbsp;<label for="mod_article" title="搜索文章"><input type="radio" id="mod_article" class="pr" name="mod" value="portal" checked="checked" > 文章</label><label for="mod_thread" title="搜索广场"><input type="radio" id="mod_thread" class="pr" name="mod" value="forum" > 广场</label><label for="mod_blog" title="搜索日志"><input type="radio" id="mod_blog" class="pr" name="mod" value="blog" > 日志</label><label for="mod_album" title="搜索相册"><input type="radio" id="mod_album" class="pr" name="mod" value="album" > 相册</label><label for="mod_group" title="搜索群组"><input type="radio" id="mod_group" class="pr" name="mod" value="group" > 群组</label><label for="mod_user" title="搜索好友"><input type="radio" id="mod_user" name="mod" value="user" class="pr" > 用户</label></td>
+
+<td><button type="submit" id="search_submit" name="searchsubmit" class="xw1" value="true">搜索</button></td>
+<td><a href="../search.php?mod=search&amp;adv=yes" target="_blank" class="xi2">高级搜索</a></td>
+<td>
+<div class="hot">
+</div>
+</td>
+</tr>
+</table>
+</form>
+<script type="text/javascript">initSearchmenu();</script>
+</div>
+<div class="wp">
+	<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+</div>
+<div class="clearfix">
+  <div class="comiis_oneline_left">
+
+    <div class="comiis_bodyadone" style='padding-top:0px;'>
+    <!--[diy=qunchongad01]--><div id="qunchongad01" class="area"></div><!--[/diy]-->
+    </div>
+    <div class="comiis_oneline_smallleft">
+      <div class="comiis_oneline_smallbox">
+      <!--[diy=qunchong01]--><div id="qunchong01" class="area"></div><!--[/diy]-->
+      </div>
+      <div class="comiis_h2title"><strong>精彩推荐</strong></div>
+      <div class="comiis_oneline_smallboxone">
+<!--[diy=qunchong02]--><div id="qunchong02" class="area"></div><!--[/diy]-->
+      </div>
+    </div>
+    <div class="comiis_oneline_middle"> <img src="images/orange/6t8pBptyysnCZx4n43.gif" class="comiis_hotcss" >
+      <div class="comiis_oneline_middlebox">
+        <div class="comiis_wearth"><iframe src="http://m.weather.com.cn/m/pn2/weather.htm" allowTransparency="true" style="background-color:transparent" width="150" height="20" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe></div>
+
+        <!--[diy=qunchong03]--><div id="qunchong03" class="area"></div><!--[/diy]-->
+
+        <h2><strong>焦点视频</strong></h2>
+        <div class="weddingscroll">
+        <!--[diy=qunchong04]--><div id="qunchong04" class="area"></div><!--[/diy]-->
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="comiis_oneline_right">
+    <div class="comiis_h2title"  style='margin-top:0px;'><strong>社区活动</strong><a href="#">更多&nbsp;&gt;&gt;</a></div>
+    <div class="comiis_oneline_smallboxone" style="height:294px;">
+<!--[diy=qunchong22]--><div id="qunchong22" class="area"></div><!--[/diy]-->
+    </div>
+    <div class="comiis_bodyadone">
+    <!--[diy=qunchongad02]--><div id="qunchongad02" class="area"></div><!--[/diy]-->
+    </div>
+    <div class="comiis_oneline_rightbox">
+      <ul>
+        <li class="onmeseover"  id="fright1" onMouseOver="fturnit(1,2)">论坛新贴</li>
+
+        <li class="onmeseout"  id="fright2" onMouseOver="fturnit(2,1)">最新回复</li>
+      </ul>
+    </div>
+    <div class="comiis_oneline_smallboxone" style="height:195px;">
+      <div class="nohidden" id="frightChild1">
+      <!--[diy=qunchong05]--><div id="qunchong05" class="area"></div><!--[/diy]-->
+
+      </div>
+      <div class="hidden" id="frightChild2">
+      <!--[diy=qunchong06]--><div id="qunchong06" class="area"></div><!--[/diy]-->
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="comiis_bodyad clearfix">
+<!--[diy=qunchongad03]--><div id="qunchongad03" class="area"></div><!--[/diy]-->
+</div>
+<div class="clearfix">
+  <div class="comiis_oneline_left">
+    <div class="comiis_h2title"><strong>社区图库</strong></div>
+<!--[diy=qunchong07]--><div id="qunchong07" class="area"></div><!--[/diy]-->
+
+    <div class="clearfix">
+      <div class="comiis_oneline_smallleft twoline_box">
+        <div class="comiis_h2title"><strong>休闲娱乐</strong><a href="#">更多&nbsp;&gt;&gt;</a></div>
+        <div class="comiis_oneline_smallboxone">
+          <!--[diy=qunchong08]--><div id="qunchong08" class="area"></div><!--[/diy]-->
+
+        </div>
+      </div>
+      <div class="comiis_oneline_smallleft twoline_box addfloatright">
+        <div class="comiis_h2title"><strong>吃喝玩乐</strong><a href="#">更多&nbsp;&gt;&gt;</a></div>
+        <div class="comiis_oneline_smallboxone">
+          <!--[diy=qunchong09]--><div id="qunchong09" class="area"></div><!--[/diy]-->
+
+        </div>
+      </div>
+    </div>
+    <div class="clearfix">
+      <div class="comiis_oneline_smallleft twoline_box">
+        <div class="comiis_h2title"><strong>心灵情感</strong><a href="#">更多&nbsp;&gt;&gt;</a></div>
+        <div class="comiis_oneline_smallboxone">
+          <!--[diy=qunchong10]--><div id="qunchong10" class="area"></div><!--[/diy]-->
+
+        </div>
+      </div>
+      <div class="comiis_oneline_smallleft twoline_box addfloatright">
+        <div class="comiis_h2title"><strong>房产楼市</strong><a href="#">更多&nbsp;&gt;&gt;</a></div>
+        <div class="comiis_oneline_smallboxone">
+          <!--[diy=qunchong11]--><div id="qunchong11" class="area"></div><!--[/diy]-->
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comiis_oneline_right">
+    <div class="comiis_h2title"><strong>打折优惠</strong><a href="#">更多&nbsp;&gt;&gt;</a></div>
+    <div class="comiis_oneline_smallboxone" style="height:239px;">
+    <!--[diy=qunchong14]--><div id="qunchong14" class="area"></div><!--[/diy]-->
+
+    </div>
+    <div class="comiis_bodyadone">
+    <!--[diy=qunchongad04]--><div id="qunchongad04" class="area"></div><!--[/diy]-->
+    </div>
+    <div class="comiis_h2title"><strong>车友互动</strong><a href="#">更多&nbsp;&gt;&gt;</a></div>
+    <div class="comiis_oneline_smallboxone" style="height:325px;padding:0 9px;">
+      <div class="comiis_twoline_rightbox">
+      <!--[diy=qunchong15]--><div id="qunchong15" class="area"></div><!--[/diy]-->
+
+      </div>
+      <!--[diy=qunchong16]--><div id="qunchong16" class="area"></div><!--[/diy]-->
+    </div>
+  </div>
+</div>
+
+<div class="clearfix">
+  <div class="comiis_oneline_left">
+    <div class="clearfix">
+      <div class="comiis_oneline_smallleft twoline_box">
+        <div class="comiis_h2title"><strong>亲子乐园</strong><a href="#">更多&nbsp;&gt;&gt;</a></div>
+        <div class="comiis_oneline_smallboxone">
+          <!--[diy=qunchong12]--><div id="qunchong12" class="area"></div><!--[/diy]-->
+
+        </div>
+      </div>
+      <div class="comiis_oneline_smallleft twoline_box addfloatright">
+        <div class="comiis_h2title"><strong>时尚乐园</strong><a href="#">更多&nbsp;&gt;&gt;</a></div>
+        <div class="comiis_oneline_smallboxone">
+          <!--[diy=qunchong13]--><div id="qunchong13" class="area"></div><!--[/diy]-->
+
+        </div>
+      </div>
+    </div>
+    <div class="comiis_bodyadone">
+    <!--[diy=qunchongad05]--><div id="qunchongad05" class="area"></div><!--[/diy]-->
+    </div>
+    <div class="comiis_h2title"><strong>网友家园</strong><a href="#">随便看看&nbsp;&gt;&gt;</a></div>
+    <div class="comiis_twoline_boxtwo">
+
+    <!--[diy=qunchong17]--><div id="qunchong17" class="area"></div><!--[/diy]-->
+      <div class="comiis_oneline_middlebox">
+      <!--[diy=qunchong18]--><div id="qunchong18" class="area"></div><!--[/diy]-->
+      </div>
+    </div>
+  </div>
+  <div class="comiis_oneline_right">
+
+    <div class="comiis_bodyadone">
+    <!--[diy=qunchongad06]--><div id="qunchongad06" class="area"></div><!--[/diy]-->
+    </div>
+    <div class="comiis_h2title"><strong>便民服务</strong><a href="#">更多&nbsp;&gt;&gt;</a></div>
+    <!--[diy=qunchong19]--><div id="qunchong19" class="area"></div><!--[/diy]-->
+    <div class="comiis_h2title"><strong>活跃会员</strong></div>
+    <!--[diy=qunchong20]--><div id="qunchong20" class="area"></div><!--[/diy]-->
+
+  </div>
+</div>
+<div class="comiis_h2title"><strong>友情链接</strong><a href="#" title="">+友情链接申请</a></div>
+<div class="friendlink clearfix">
+  <ul style='padding: 10px 10px 2px;width:946px;'>
+    <!--[diy=qunchong21]--><div id="qunchong21" class="area"></div><!--[/diy]-->
+
+  </ul>
+</div>
+<div class="comiis_bodyadone" style='margin-bottom:8px;'>
+<!--[diy=qunchongad07]--><div id="qunchongad07" class="area"></div><!--[/diy]-->
+</div></div>
+<div style="clear:both;"></div>
+<div id="ft" class="wp cl mn">
+<!--{subtemplate common/footer}-->

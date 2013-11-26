@@ -1,0 +1,20 @@
+<!--{loop $postlist $post}-->
+	<!--{block notice}-->
+		<!--{if $post[first]}-->
+			<script type="text/javascript">
+			<!--
+            $('authorposton$post[pid]').innerHTML = $('authorposton$post[pid]').innerHTML + '&nbsp;&nbsp;<img id="shownotice" class="authicn vm" src="source/plugin/drc_feed/image/notice_ico.gif" style="position:relative; top:-1px;" onmouseover="showMenu(this.id)">';
+			-->
+            </script>
+
+            <div id="shownotice_menu" style="display:none; max-width:450px; _width:350px; padding: 5px; border: 1px solid #CCCCCC; background:#FFFFFF;">
+            	<ul>
+                <!--{loop $feedlists $feedlist}-->
+            		<li style="margin:10px 0px;"><p><img src="$feedlist[icon_image]" /> $feedlist[title_template] <!--{if $feedlist[new]}--><span style="color:red;">New</span><!--{/if}-->  <span class="xg1">$feedlist[dateline]</span></p><p> $feedlist[body_template]</p></li>
+            	<!--{/loop}-->
+                <ul>
+			</div>
+    	<!--{/if}-->
+	<!--{/block}-->
+{eval $shownotice[] = $notice;}
+<!--{/loop}-->

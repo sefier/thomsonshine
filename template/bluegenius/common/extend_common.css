@@ -1,0 +1,29 @@
+/*Modify*/
+#hd .wp {
+	padding: 3px 0;
+}
+#ft {
+	padding: 10px 0 39px;
+	border-top: 1px solid #CDCDCD;
+	line-height: 1.8;
+	color: #666;
+}
+.a_pt, .a_pb {
+	background: none;
+	margin-bottom: 6px;
+	padding-left: 0;
+	zoom: 1;
+}
+.pcb {
+	margin-right: 0;
+}
+
+/*Additional*/
+
+#sitetop {
+	background-color: #EDEDED;
+	border-bottom: 1px solid #DDD;
+}
+#top_left {
+	text-align:left;
+}

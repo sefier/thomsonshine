@@ -1,0 +1,56 @@
+<!--{block newwindow}-->
+	<link href="source/plugin/drc_window/css/jquery-ui.css" rel="stylesheet" type="text/css"/>    
+    <link href="source/plugin/drc_window/css/AeroWindow.css?r=123" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="source/plugin/drc_window/js/jquery-1.4.2.min.js"></script> 
+    <script type="text/javascript" src="source/plugin/drc_window/js/jquery-ui-1.8.1.custom.min.js"></script> 
+    <script type="text/javascript" src="source/plugin/drc_window/js/jquery.easing.1.3.js"></script>         
+    <script type="text/javascript" src="source/plugin/drc_window/js/jquery-AeroWindow.js"></script>
+	
+	<!--{if $type == 1}-->
+    <script type="text/javascript">
+      $(document).ready(function() {
+        
+        $('#url_window').AeroWindow({
+          WindowTitle:          '{$title}',
+          WindowPositionTop:    'center',
+          WindowPositionLeft:   'center',
+          WindowWidth:          {$width},
+          WindowHeight:         {$height},
+		  WindowAnimationSpeed: 1000,
+		  WindowResizable:      true,
+		  WindowDraggable:      true,
+		  WindowMinimize:       true,
+          WindowMaximize:       true,
+          WindowClosable:       true,
+          WindowAnimation:      'easeOutBounce'
+        });
+      });
+    </script>
+	<!--{elseif $type ==2}-->
+	<script type="text/javascript">
+      $(document).ready(function() {
+        
+        $('#code_window').AeroWindow({
+          WindowTitle:          '{$title}',
+          WindowPositionTop:    'center',
+          WindowPositionLeft:   'center',
+          WindowWidth:          {$width},
+          WindowHeight:         {$height},
+		  WindowAnimationSpeed: 1000,
+		  WindowResizable:      true,
+		  WindowDraggable:      true,
+		  WindowMinimize:       true,
+          WindowMaximize:       true,
+          WindowClosable:       true,
+          WindowAnimation:      'easeOutBounce'
+        });
+      });
+    </script>
+	<!--{/if}-->
+	
+	<div id="code_window" style="display: none;">{$code}</div>
+	<div id="url_window" style="display: none;">
+      <iframe src="{$url}" width="100%" height="100%" style="border: 0px;" frameborder="0"></iframe>
+      <div id="iframeHelper"></div>
+    </div>
+<!--{/block}-->

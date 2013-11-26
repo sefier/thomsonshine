@@ -1,0 +1,25 @@
+<?php
+$owbUserRs = array (
+  'id' => 1961974643,
+  'screen_name' => '3G上微博',
+  'name' => '3G上微博',
+  'province' => '11',
+  'city' => '1000',
+  'location' => '北京',
+  'description' => '',
+  'url' => '',
+  'profile_image_url' => 'http://tp4.sinaimg.cn/1961974643/50/0/1',
+  'domain' => '',
+  'gender' => 'm',
+  'followers_count' => 0,
+  'friends_count' => 0,
+  'statuses_count' => 0,
+  'favourites_count' => 0,
+  'created_at' => 'Fri Feb 11 00:00:00 +0800 2011',
+  'following' => false,
+  'allow_all_act_msg' => false,
+  'geo_enabled' => true,
+  'verified' => false,
+  'local_image_url' => 'http://tp4.sinaimg.cn/1961974643/50/0/1',
+)
+?>

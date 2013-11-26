@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X1.5]]></item>
+	<item id="Time"><![CDATA[2010-11-11 15:43]]></item>
+	<item id="From"><![CDATA[Discuz! Board (http://localhost/dx1.5/upload/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[DRC - InfoNotice]]></item>
+			<item id="identifier"><![CDATA[drc_infonotice]]></item>
+			<item id="description"><![CDATA[InfoNotice 1.0 介紹：  
+  原外掛程式作者為 體無完膚 版本為2.0適用於Discuz!7.2的,此次升級修改為Discuz! X1.5的.
+原Discuz!7.2下載地址為
+http://www.discuz.net/thread-1452165-1-1.html
+    外掛程式功能：
+    1、如果用戶個人資料不完整，則在論壇首頁浮動提醒補全資訊;
+    2、後臺外掛程式開關控制；
+    3、後臺開關控制是否開啟遊客未登錄提醒;
+    4、後臺可控制哪些個人資訊為提醒項]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[drc_infonotice/]]></item>
+			<item id="copyright"><![CDATA[體無完膚 love322093 | bbs.7drc.com]]></item>
+			<item id="version"><![CDATA[1.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[drc_infonotice]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X1.5]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[6]]></item>
+				<item id="title"><![CDATA[個人資訊選項]]></item>
+				<item id="description"><![CDATA[設置使用者資訊完整性資訊，每項單獨一行。可選內容解釋：realname(真實姓名)、gender(性別)、birthyear(生日(年))、birthmonth(生日(月))、birthday(生日(日))、birthprovince(家鄉(省))、birthcity(家鄉(市))、resideprovince(居住地(省))、residecity(居住地( ...]]></item>
+				<item id="variable"><![CDATA[message]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[realname
+gender
+birthyear
+birthmonth
+birthday
+birthprovince
+birthcity
+resideprovince
+residecity
+residedist
+residecommunity
+msn
+taobao
+site
+alipay
+qq
+field1
+field2
+field3
+field4
+field5
+field6
+field7
+field8
+]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[5]]></item>
+				<item id="title"><![CDATA[頭像未上傳提醒]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[avatar]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[外掛程式開關]]></item>
+				<item id="description"><![CDATA[設置是否開啟個人資訊補全提醒]]></item>
+				<item id="variable"><![CDATA[radio]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="3">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[懸停時間]]></item>
+				<item id="description"><![CDATA[設置提醒資訊懸停時間，單位：秒]]></item>
+				<item id="variable"><![CDATA[time]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[5]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="4">
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[遊客未登錄提醒]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[guest]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="5">
+				<item id="displayorder"><![CDATA[4]]></item>
+				<item id="title"><![CDATA[允許提示的群組]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[groups]]></item>
+				<item id="type"><![CDATA[groups]]></item>
+				<item id="extra"><![CDATA[]]></item>
+				<item id="__value">
+					<item id="0"><![CDATA[10]]></item>
+					<item id="1"><![CDATA[11]]></item>
+					<item id="2"><![CDATA[12]]></item>
+					<item id="3"><![CDATA[13]]></item>
+					<item id="4"><![CDATA[14]]></item>
+					<item id="5"><![CDATA[15]]></item>
+					<item id="6"><![CDATA[16]]></item>
+					<item id="7"><![CDATA[17]]></item>
+					<item id="8"><![CDATA[18]]></item>
+					<item id="9"><![CDATA[19]]></item>
+					<item id="10"><![CDATA[1]]></item>
+					<item id="11"><![CDATA[2]]></item>
+					<item id="12"><![CDATA[3]]></item>
+					<item id="13"><![CDATA[8]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="guest"><![CDATA[提醒您：您還沒有登錄，登錄後流覽更多內容！]]></item>
+				<item id="avatar"><![CDATA[提醒您: 您還沒有頭像，請儘快上傳頭像]]></item>
+				<item id="msg"><![CDATA[ 提醒您: 請填寫您的 - ]]></item>
+				<item id="err"><![CDATA[ 外掛程式後臺配置錯誤！]]></item>
+			</item>
+		</item>
+	</item>
+</root>

@@ -1,0 +1,144 @@
+body{background-color:#FFFFFF;background:url({STYLEIMGDIR}/comiis_tbg.gif) left top repeat-x;}
+ul,li{list-style:none;}
+.green{color:#008c00;}
+.blue{color:#049;}
+.gray{color:#333;}
+.dark_red{color:#c92a00;}
+.gray_666{color:#666;}
+.smalltitle{color:#0389d3;}
+.yellow,.info .yellow{color:#f60;}
+.hdc{width:970px;height:70px;margin:0 auto;text-align:left;background:url({STYLEIMGDIR}/comiis_hbg.gif) center top no-repeat;}
+.nvhm { width: 24px; background: url({STYLEIMGDIR}/pt_icn.png) no-repeat 7px 8px; line-height: 200px; overflow: hidden; }
+.kmxx {border:1px solid #cacaca;padding:2px;}
+#hd .wp {padding:0px;}
+#hd h2 {float:left;padding:0 20px 0 0;}
+.wp { width: 970px; }
+#hd .wp, #wp { min-width: 970px; }
+.ct2 .sd {float:right;overflow:hidden;width:230px;}
+.appl {width:130px;}
+.ct3_a .sd {float:right;margin-left:13px;width:220px;}
+#qmenu { float: right !important; margin: 0px; display: inline; padding: 0 0 0 5px !important; width: 90px; height: 26px; background: url({STYLEIMGDIR}/qmenu.png) no-repeat 0 0; line-height: 24px; }
+#qmenu_menu {margin:-3px 0 0 1px;width:91px;}
+/* -----导航----- */
+.n_nav{width:962px;overflow:hidden;margin:0 auto;height:100px;background:url({STYLEIMGDIR}/comiis_title_bg.png) no-repeat right top;padding:0 8px 0 0;}
+.n_nav .n_hd{width:7px;height:100px;background:url({STYLEIMGDIR}/comiis_title_bg.png) no-repeat left top;float:left;overflow:hidden;}
+.n_nav .n_bd{width:955px;height:100px;background:url({STYLEIMGDIR}/comiis_title_bg.png) repeat-x 0px -124px;float:left;overflow:hidden;}
+.nav_hd{width:955px;overflow:hidden;}
+.nav_hd_ul{margin:3px 0 0 0;}
+.nav_hd_ul li{float:left;}
+.nav_hd_ul li a{display:block;height:31px;line-height:30px;padding:0 18px 0 0px;float:left;background:url({STYLEIMGDIR}/comiis_x.png) no-repeat right center;font-size:14px;font-weight:bold;color:#fcfcfc;}
+.nav_hd_ul li a span{display:block;height:31px;padding:0 0 0 18px;float:left;cursor:pointer;text-decoration:none;}
+.nav_hd_ul li a:hover, .nav_hd_ul li.current a {background:url({STYLEIMGDIR}/comiis_an_r.png) no-repeat right center;color:{HIGHLIGHTLINK};text-decoration:none;}
+#index.current a{background:url({STYLEIMGDIR}/comiis_an_rs.png) no-repeat right center;color:{HIGHLIGHTLINK};text-decoration:none;}
+.nav_hd_ul li a:hover span,.nav_hd_ul li.current a span{background:url({STYLEIMGDIR}/comiis_an_l.png) no-repeat left center;text-decoration:none;}
+.nav_hd_ad{float:right;width:151px;height:25px;line-height:25px;color:#333;overflow:hidden;text-indent:10px;margin:2px 0 0 0;}
+.nav_bd_ul{margin:8px 0px 0 -1px;float:left;width:960px;}
+.nav_bd_ul li{height:25px;width:94px;line-height:25px;border-left:1px dashed #ccc;float:left;}
+.nav_bd_ul li a{font-size:14px;color:#333;display:block;width:60px;height:25px;background:url({STYLEIMGDIR}/comiis_ico.png) no-repeat 10px 9px;padding:0 13px 0 19px;text-decoration:none;}
+.nav_bd_ul li a:hover{background:url({STYLEIMGDIR}/comiis_navbg.gif) no-repeat 5px center;color:#333;text-decoration:none;}
+.ico_sj{padding:12px 0 0 5px;}
+.lk .m li {height: 40px;}
+/* -----首页部分----- */
+.tns th.bbn{border-right:0px solid #AACCEE;}
+.info{width:970px;margin-top:8px;overflow:hidden;position:relative;}
+#fc{width:310px; height:207px;}
+.col1{width:310px;overflow:hidden;float:left;position:relative;}
+.col1-cm{height:286px;border:1px solid #cacaca;position:relative;width:308px;margin:8px 0 0 0!important;margin:6px 0 0 0;}
+.top_corner,.top_corner_r,.bot_corner,.bot_corner_r,.top_corner_blue,.top_corner_r_blue,.bot_corner_blue,.bot_corner_r_blue{width:5px;height:5px;display:block;background:url({STYLEIMGDIR}/comiis_ico01.png) no-repeat;overflow:hidden;z-index:6;position:absolute;}
+.top_corner{top:-1px;left:-1px;}
+.top_corner_r{background-position:-5px 0;right:-1px;top:-1px;}
+.bot_corner{background-position:0px -5px;left:-1px;bottom:-1px;}
+.bot_corner_r{background-position:-5px -5px;right:-1px;bottom:-1px;}
+.top_corner_blue,.top_corner_r_blue,.bot_corner_blue,.bot_corner_r_blue{background:url({STYLEIMGDIR}/comiis_ico02.png) no-repeat;}
+.top_corner_blue{background-position:-10px 0;top:-1px;left:-1px;}
+.top_corner_r_blue{background-position:-15px 0;right:-1px;top:-1px;}
+.top_corner_blue_w{background:url({STYLEIMGDIR}/comiis_yj_l.gif) no-repeat;width:5px;height:5px;display:block;overflow:hidden;z-index:6;position:absolute;top:-1px;left:-1px;}
+.top_corner_r_blue_w{background:url({STYLEIMGDIR}/comiis_yj_r.gif) no-repeat;width:5px;height:5px;display:block;overflow:hidden;z-index:6;position:absolute;right:-1px;top:-1px;}
+.bot_corner_blue{background-position:-10px -5px;left:-1px;bottom:-1px;}
+.bot_corner_r_blue{background-position:-15px -5px;right:-1px;bottom:-1px;}
+.top_corner_red{background-position:0px 0;top:-1px;left:-1px;}
+.top_corner_r_red{background-position:-5px 0;right:-1px;top:-1px;}
+.bot_corner_red{background-position:0px -5px;left:-1px;bottom:-1px;}
+.bot_corner_r_red{background-position:-5px -5px;right:-1px;bottom:-1px;}
+
+.gz_tab{width:308px;overflow:hidden;}
+.gz_tab li{width:153px;float:left;height:24px;line-height:24px;color:#333;font-weight:bold;font-size:14px;text-align:center;background:url({STYLEIMGDIR}/comiis_ico03.gif);border-bottom:1px solid #cacaca;cursor:pointer;}
+.gz_tab li.now{background:none;border-bottom:none;color:#049;}
+.col1-list{margin-top:5px;}
+.col1-list li{height:25px;line-height:25px;padding:0 0 0 20px;background:url({STYLEIMGDIR}/comiis_ico04.gif) no-repeat 10px 11px;font-size:14px;width:285px;overflow:hidden;}
+.col1-lists{margin-top:7px;margin-left:3px;}
+.col1-lists li{height:23px;line-height:23px;padding:0 0 0 20px;background:url({STYLEIMGDIR}/comiis_ico04.gif) no-repeat 10px 11px;font-size:14px;width:285px;overflow:hidden;}
+.col1-lists li a,.col1-list li a,.col3-list li a,.acticity-list li a,.home-list li a{color:#333;}
+.col1-lists li a:hover,.col1-list li a:hover,.col3-list li a:hover,.hot-list li a:hover,.hot-list li span a:hover,.acticity-list li a:hover,.home-list li a:hover,.word-list li em a:hover,.word-list li span a:hover,.blog-list li a:hover,.links-list a:hover{color:#f60;}
+.col2{position:relative;left:8px;width:406px;overflow:hidden;float:left;}
+.col2-cm{width:404px;height:580px;border:1px solid #cacaca;position:relative;background:url({STYLEIMGDIR}/comiis_bg01.gif) repeat-x;}
+.hot-cm{width:388px;overflow:hidden;margin:0 auto;line-height:1.8;text-align:center;padding:10px 0 0 0;}
+.hot-cm h3 a{font-size:14px;font-weight:bold;}
+.hot-cm p{text-align:left;}
+.hot-list{width:388px;overflow:hidden;border-top:1px dashed #ccc;margin:8px auto 0 auto;padding:8px 0 0 0;}
+.hot-list li{height:24px;line-height:24px;font-size:14px;padding:0 0 0 3px;width:385px;overflow:hidden;text-align:right;}
+.hot-list li p{float:left;width:297px;height:24px;overflow:hidden;text-align:left;}
+.hot-list li span{font-size:12px;display:block;width:76px;overflow:hidden;float:right;*float:none;}
+.hot-list li a,.word-list li span a,.blog-list li a{color:#333;}
+.hot-list li a.titles{color:#f60;}
+.hot-list li span a,.word-list li em a,.links-list a{color:#666;}
+.hq-ad{padding-top:7px!important;padding-top:6px;}
+.col3{width:238px;overflow:hidden;float:right;}
+.col3-cm{width:236px;border:1px solid #ace;position:relative;}
+.weather{height:54px;background:url({STYLEIMGDIR}/comiis_bg03.png) repeat-x;text-align:center;}
+.weather .tns {padding:8px 0 0;}
+.blue-h2{height:25px;line-height:25px;width:100%;font-size:14px;font-weight:bold;text-indent:11px;z-index:2;background:url({STYLEIMGDIR}/comiis_tbg.png) repeat-x;}
+.col3-list{margin-top:6px;}
+.col3-list li{height:24px;line-height:24px;padding:0 0 0 17px;background:url({STYLEIMGDIR}/comiis_ico04.gif) no-repeat 9px 10px;width:203px;overflow:hidden;}
+.activity-pic{width:212px;overflow:hidden;margin:0 auto;line-height:1.6;padding:9px 3px 11px 3px;border-bottom:1px dashed #ccc;}
+.activity-pic img{padding:2px;border:1px solid #ccc;float:left;margin:0 3px 0 0;}
+.activity-pic h3{font-size:12px;font-weight:normal;}
+.acticity-list{margin-top:4px;width:217px;overflow:hidden;}
+.acticity-list li{width:210px;padding:0 0 0 7px;height:26px;line-height:26px;overflow:hidden;}
+.text-ad{width:238px;height:90px;background:url({STYLEIMGDIR}/comiis_adbg.png) no-repeat;float:right;}
+.col4{width:722px;position:relative;border:1px solid #ace;float:left;}
+.home-pic{width:340px;height:290px;overflow:hidden;margin:6px 0 0 6px !important;margin:6px 0 0 1px;float:left;}
+.home-pic li{width:160px;float:left;text-align:center;margin:4px 4px;}
+.home-pic li a{background:#fcfcfc;border:1px solid #e9e9e9;width:144px;overflow:hidden;height:120px;padding:7px 7px 5px 7px;display:block;}
+.home-pic li a:hover{background:#fefcf0;border:1px solid #ece7c9;}
+.home-list{margin:8px 0 0 6px;float:left;width:345px;}
+.home-list li{height:27px;line-height:27px;font-size:14px;width:366px;overflow:hidden;float:left;}
+.home-list li a.titles{color:#936216;}
+.home-more{width:105px;height:16px;line-height:16px;display:block;background:url({STYLEIMGDIR}/comiis_ico05.gif) no-repeat 0 3px;text-indent:8px;position:absolute;top:5px;right:3px;}
+.col5{width:359px;overflow:hidden;float:left;margin:0 6px 0 0;position:relative;}
+.col5-cm{width:356px;height:278px;border:1px solid #ace;position:relative;}
+.col5-pic{width:330px;overflow:hidden;margin:14px auto 0 auto;line-height:22px;}
+.col5-pic img{float:left;margin:0 10px 0 0;}
+.col5-pic h3{font-size:14px;font-weight:normal;}
+.col5-pic div{padding-top:0px;}
+.col6{width:724px;overflow:hidden;float:left;}
+.col6-cm{width:722px;position:relative;border:1px solid #eaa;}
+.red-h2{background:url({STYLEIMGDIR}/comiis_tbg01.png) repeat-x;}
+.home-pics{width:340px;height:170px;overflow:hidden;margin:6px 0 0 6px !important;margin:6px 0 0 1px;float:left;}
+.home-pics li{width:160px;float:left;text-align:center;margin:4px 4px;}
+.home-pics li a{background:#fcfcfc;border:1px solid #e9e9e9;width:144px;overflow:hidden;height:143px;padding:7px 7px 5px 7px;display:block;}
+.home-pics li a:hover{background:#fefcf0;border:1px solid #ece7c9;}
+.word-list{float:left;width:365px;overflow:hidden;margin:12px 0 0 5px;}
+.word-list li{height:22px;line-height:22px;font-size:14px;width:365px;text-align:right;}
+.word-list li span{display:block;width:280px;height:22px;overflow:hidden;float:left;text-align:left;}
+.word-list li em{font-style:normal;float:right;width:80px;display:block;overflow:hidden;*float:none;font-size:12px;}
+.telephone-list{margin:4px 0 0 30px;color:#333;}
+.telephone-list li{height:25px;width:162px;float:left;padding:0 0 0 8px;border-right:1px dashed #ccc;line-height:25px;overflow:hidden;}
+.blog-pic{width:219px;overflow:hidden;margin:10px auto 0 auto;border-bottom:1px dashed #ccc;padding:0 0 5px 0;line-height:normal;}
+.blog-pic li{float:left;width:109px;overflow:hidden;height:126px;text-align:center;}
+.blog-pic span{display:block;}
+.blog-pic li img{padding:1px;border:1px solid #ccc;margin-bottom:3px;*margin-bottom:5px;}
+.blog-list{margin-top:8px;}
+.blog-list li{height:23px;line-height:23px;width:93px;overflow:hidden;float:left;padding:0 0 0 18px;background:url({STYLEIMGDIR}/dot.gif) no-repeat 10px 10px;}
+.comiis_link{width:970px;overflow:hidden;margin:8px auto;}
+.comiis_link-cm{width:968px;border:1px solid #ace;position:relative;}
+.tel{background:url({STYLEIMGDIR}/comiis_fwlbg.png);width:24px;height:75px;float:left;padding:8px 0 0 6px;margin:-1px 0 -1px -1px;line-height:18px;font-size:14px;}
+
+/* -----底部----- */
+#comiis_footer {CLEAR: both; MARGIN: 1px auto 10px; WIDTH: 970px; LINE-HEIGHT: 20px; TEXT-ALIGN: center;}
+.comiis_footer {BORDER-TOP: #d6d6d6 1px solid; MARGIN: 0px auto; WIDTH: 970px; COLOR: #cdcdcd; LINE-HEIGHT: 30px; HEIGHT: 30px; TEXT-ALIGN: center;}
+.comiis_footer A {MARGIN: 0px 10px;COLOR: #666;}
+.comiis_footer A:hover {COLOR: #db0000;TEXT-DECORATION: underline;}
+.comiis_copyright {MARGIN: 0px auto; WIDTH: 970px; COLOR: #888; LINE-HEIGHT: 20px; POSITION: relative; HEIGHT: 70px; TEXT-ALIGN: center;}
+.comiis_copyright a{COLOR: #888;}
+.comiis_copyright A:hover {COLOR: #db0000;}

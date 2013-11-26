@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X1.5]]></item>
+	<item id="Time"><![CDATA[2011-01-03 11:48]]></item>
+	<item id="From"><![CDATA[Discuz!測試論壇 (http://localhost/dx15/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[0]]></item>
+			<item id="name"><![CDATA[DRC - Feed]]></item>
+			<item id="identifier"><![CDATA[drc_feed]]></item>
+			<item id="description"><![CDATA[]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[drc_feed/]]></item>
+			<item id="copyright"><![CDATA[體無完膚]]></item>
+			<item id="version"><![CDATA[1.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[viewthread]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[2]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X1.5]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[是否開啟]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[offset]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[用戶組設定]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[groups]]></item>
+				<item id="type"><![CDATA[groups]]></item>
+				<item id="extra"><![CDATA[]]></item>
+				<item id="__value">
+					<item id="0"><![CDATA[1]]></item>
+				</item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[版塊設定]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[forumlists]]></item>
+				<item id="type"><![CDATA[forums]]></item>
+				<item id="extra"><![CDATA[]]></item>
+				<item id="__value">
+					<item id="0"><![CDATA[36]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="license"><![CDATA[[b][size=4][color=DarkOrange]Drc_Feed[/color] [/size][/b][版本: V1.0]
+		
+[b]許可協議[/b]
+本插件為 體無完膚 | 【DRC】 獨立開發的原創插件, 依法擁有版權。
+未得允許不得公開出售、發佈、修改，如需二次開發聯繫我們獲得授權。
+聯繫方式：23735841(QQ)、mutou.lee@163.com (Email)
+
+[b]技術支持[/b]
+Discuz! Rescue Centre 官方QQ群：40318866
+Discuz! Rescue Centre！| 【DRC】：[url=http://bbs.7drc.com]http://bbs.7drc.com[/url]
+]]></item>
+
+  <item id="intro"><![CDATA[[b][size=4][color=DarkOrange]Drc_Feed 1.0 介紹：[/color][/size][/b]
+[b]許可協議[/b]
+本插件為 體無完膚 | 【DRC】 獨立開發的原創插件, 依法擁有版權。
+未得允許不得公開出售、發佈、修改，如需二次開發聯繫我們獲得授權。
+聯繫方式：23735841(QQ)、mutou.lee@163.com (Email)
+
+[b]技術支持[/b]
+Discuz! Rescue Centre 官方QQ群：40318866
+Discuz! Rescue Centre！| 【DRC】：[url=http://bbs.7drc.com]http://bbs.7drc.com[/url]
+]]></item>
+	</item>
+</root>

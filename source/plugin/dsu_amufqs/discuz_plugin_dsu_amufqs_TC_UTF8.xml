@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X1.5]]></item>
+	<item id="Time"><![CDATA[2010-10-21 21:21]]></item>
+	<item id="From"><![CDATA[Discuz! Board (http://localhost/dx/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[【DSU】反潛水]]></item>
+			<item id="identifier"><![CDATA[dsu_amufqs]]></item>
+			<item id="description"><![CDATA[通過對長時間看帖不回帖會員扣除相應積分;另外新版中，新加發帖隨機獎勵和死亡深度控制，有效防止負分出現。]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[dsu_amufqs/]]></item>
+			<item id="copyright"><![CDATA[阿牧製作 版權所有]]></item>
+			<item id="version"><![CDATA[[X1.5]V2.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[fqs]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X1.5]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[7]]></item>
+				<item id="title"><![CDATA[死亡深度]]></item>
+				<item id="description"><![CDATA[請填寫整數，並且保證潛水深度&amp;amp;amp;lt;死亡深度；建議兩種差值為3以上；
+達到該值後，用戶無法繼續正常瀏覽帖子。]]></item>
+				<item id="variable"><![CDATA[fqs_death]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[15]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[10]]></item>
+				<item id="title"><![CDATA[臨界提示]]></item>
+				<item id="description"><![CDATA[當深度接近設置的潛水深度時的提示語。]]></item>
+				<item id="variable"><![CDATA[fqsp_diving]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[體力不支，請盡快回帖，以免扣分！]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[8]]></item>
+				<item id="title"><![CDATA[恢復時間]]></item>
+				<item id="description"><![CDATA[單位為：小時
+例如，若您設置的是X小時，那麼會員A在離開論壇X小時後，將重新計算潛水深度。]]></item>
+				<item id="variable"><![CDATA[fqs_recover]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[24]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="3">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[無效版塊]]></item>
+				<item id="description"><![CDATA[被選版塊將不受反潛水限制；
+本設置對隨機獎勵無效！]]></item>
+				<item id="variable"><![CDATA[fqs_invalidfid]]></item>
+				<item id="type"><![CDATA[forums]]></item>
+				<item id="extra"><![CDATA[]]></item>
+				<item id="__value">
+					<item id="0"><![CDATA[36]]></item>
+				</item>
+			</item>
+			<item id="4">
+				<item id="displayorder"><![CDATA[5]]></item>
+				<item id="title"><![CDATA[懲罰分值]]></item>
+				<item id="description"><![CDATA[當到達潛水深度後，每次多少分。
+如果設置為0或者小於0，視為關閉本功能。]]></item>
+				<item id="variable"><![CDATA[fqs_punish]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[2]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="5">
+				<item id="displayorder"><![CDATA[12]]></item>
+				<item id="title"><![CDATA[死亡提示]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[fqsp_death]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[再不回復將強制回復！]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="6">
+				<item id="displayorder"><![CDATA[4]]></item>
+				<item id="title"><![CDATA[積分類型]]></item>
+				<item id="description"><![CDATA[扣分的類型！
+如果本處設置為空，視為關閉供功能。
+本設置也是隨機獎勵的積分類型！]]></item>
+				<item id="variable"><![CDATA[fqs_extc]]></item>
+				<item id="type"><![CDATA[extcredit]]></item>
+				<item id="value"><![CDATA[2]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="7">
+				<item id="displayorder"><![CDATA[9]]></item>
+				<item id="title"><![CDATA[刷新限制]]></item>
+				<item id="description"><![CDATA[練習訪問同一帖子的時間限制，在設置的時間內不增加潛水深度。（單位為：秒）]]></item>
+				<item id="variable"><![CDATA[fqs_refurbish]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[1000]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="8">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[特殊用戶組]]></item>
+				<item id="description"><![CDATA[選中的用戶組，不受反潛水控制；
+本設置對隨機獎勵無效！]]></item>
+				<item id="variable"><![CDATA[fqs_invalidgid]]></item>
+				<item id="type"><![CDATA[groups]]></item>
+				<item id="extra"><![CDATA[]]></item>
+				<item id="__value">
+					<item id="0"><![CDATA[9]]></item>
+				</item>
+			</item>
+			<item id="9">
+				<item id="displayorder"><![CDATA[13]]></item>
+				<item id="title"><![CDATA[最高獎勵分值]]></item>
+				<item id="description"><![CDATA[最高獎勵的分值。必須為整數。]]></item>
+				<item id="variable"><![CDATA[fqs_reward]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[10]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="10">
+				<item id="displayorder"><![CDATA[11]]></item>
+				<item id="title"><![CDATA[扣分提示]]></item>
+				<item id="description"><![CDATA[達到設定潛水深度開始扣分。]]></item>
+				<item id="variable"><![CDATA[fqsp_punish]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[長時間看帖不回復，您的]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="11">
+				<item id="displayorder"><![CDATA[14]]></item>
+				<item id="title"><![CDATA[回復隨即獎勵機率]]></item>
+				<item id="description"><![CDATA[這裡設置的是觸發隨機獎勵的概率。
+請填寫0到100之間的數字；
+小於0表示關閉本功能。]]></item>
+				<item id="variable"><![CDATA[fqs_probability]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[100]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="12">
+				<item id="displayorder"><![CDATA[6]]></item>
+				<item id="title"><![CDATA[潛水深度]]></item>
+				<item id="description"><![CDATA[瀏覽多少帖子後，開始扣分。
+必須大於10.]]></item>
+				<item id="variable"><![CDATA[fqs_diving]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[10]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="13">
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="title"><![CDATA[強制跳轉主題ID]]></item>
+				<item id="description"><![CDATA[請填寫tid；]]></item>
+				<item id="variable"><![CDATA[fqs_jump2tid]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[3]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="14">
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[死亡後，免激活用戶組]]></item>
+				<item id="description"><![CDATA[被選用戶組無需強制跳轉，但是仍然扣分。]]></item>
+				<item id="variable"><![CDATA[fqs_supergid]]></item>
+				<item id="type"><![CDATA[groups]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="15">
+				<item id="displayorder"><![CDATA[16]]></item>
+				<item id="title"><![CDATA[隨機獎勵提示]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[fqsp_reward]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[恭喜您獲得反潛水隨機獎勵]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="16">
+				<item id="displayorder"><![CDATA[15]]></item>
+				<item id="title"><![CDATA[發送獎勵通知]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[fqs_notice]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="1"><![CDATA[提示信息]]></item>
+				<item id="4"><![CDATA[<B>提示</B>：您已經達到死亡深度，先將跳轉至激活帖，回復該帖即可復活。]]></item>
+				<item id="5"><![CDATA[【DSU】反潛水隨機獎勵通知<BR>感謝您的積極回復，剛才您非常幸運的獲得了反潛水隨機獎勵，獎勵積分：{reward},您的幸運帖子地址為：{url}]]></item>
+			</item>
+			<item id="installlang">
+				<item id="1"><![CDATA[反潛水隨機獎勵]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+		<item id="license"><![CDATA[  [*]本插件版權歸屬插件作者,及其下屬Discuz! Student Union團隊所有.
+[*]未經插件作者許可,任何人不得以任何形式在任何地方發佈/轉發原版以及其衍生的修改版.
+[*][b]插件作者:[/b]阿牧
+[*][b]作品簡介:[/b]活躍論壇原來可以這樣簡單
+[*][b]發佈地址:[/b][url]http://www.dsu.cc[/url]
+[*]如有任何關於使用上的疑問,請至[url]http://www.dsu.cc/forum-44-1.html[/url]提出.
+[*]最後,感謝您使用我們的插件,也希望您能夠給我們DSU團隊提供更好的意見([url=http://www.dsu.cc/]請點擊這裡進入DSU團隊官方站點[/url]).]]></item>
+		<item id="intro"><![CDATA[
+			[color=DeepSkyBlue][b]關於本插件的相關信息:[/b][/color]
+				名稱: [b]反潛水[/b]
+				版本: [b][X1.5]V2.0[/b]
+				(反潛水獨立版，不含遊客限制與附件登陸提醒，這兩功能將另外出插件！)
+				作者: 阿牧
+				DSU榮譽出品 http://www.dsu.cc
+				鳴謝：[url=http://www.feiba.net/]飛吧資源站（ Www.FeiBa.Net）[/url]站長：Beien
+				-------------------------------------------
+				本插件僅供個人非商業用途使用!
+				禁止任何形式的封裝再發佈行為.
+				特此聲明.
+
+				2010年10月21日
+			]]></item>
+	</item>
+</root>

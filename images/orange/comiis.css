@@ -1,0 +1,33 @@
+.zxx_list_title{background:#eeeeee;}
+#tinybox{position:absolute; display:none; background:#ffffff url(preload.gif) no-repeat 50% 50%;  z-index:2000;}
+#tinymask{position:absolute; display:none; top:0; left:0; height:100%; width:100%; background:#000000; z-index:1500;}
+#tinycontent{background:#ffffff;}
+.comiis_innad {width:430px;background:url(admn01.jpg) no-repeat;overflow:hidden;border:6px solid #D7D7D7;}
+.comiis_adTop {height:65px;position:relative;}
+.comiis_adTop h3 {padding-left:37px;line-height:24px;padding-top:5px;color:#CA261A;font-size:14px;background:url(admn02.jpg) no-repeat 13px 10px;}
+.comiis_adTop p {padding-left:13px;color:#777;font-family:Arial,Helvetica,sans-serif;}
+.CsadTop-buttom {width:13px;height:13px;background:url(admn03.jpg) no-repeat;position:absolute;right:10px;top:10px;}
+.comiis_adMd {width:410px;margin:8px auto 0px auto;overflow:hidden;padding-bottom:10px;}
+.csadMd-title {height:20px;line-height:20px;}
+.csadMd-title a {float:right;padding-right:21px;background:url(admn05.jpg) no-repeat 112px 5px;color:#C9773B;}
+.csadMd-title h3 {width:164px;text-indent:7px;padding-top:1px;background:url(admn04.jpg) no-repeat;font-size:12px;color:#fff;font-weight:normal;}
+.csadMd-content {background:url(admn08.jpg) no-repeat;}
+.csadMd-content ul {width:396px;padding:10px 0 0 13px;overflow:hidden;}
+.csadMd-content ul li {text-align:center;width:67px;line-height:21px;background:url(admn07.jpg) no-repeat;text-align:center;float:left;margin-right:12px;word-wrap:normal;}
+.csadMd-content ul li a {color:#fff;word-wrap:normal;}
+.csadMd-content .csadMd-content-li01 {margin-right:0;}
+.csadMd-content p {padding:10px 0 0 23px;line-height:22px;background:url(admn06.jpg) no-repeat 13px 16px;}
+.csadMd-content p a {text-decoration: underline;}
+.comiis_adBm {width:410px;margin:0px auto 5px auto;overflow:hidden;}
+.csadBm-title {width:164px;text-indent:7px;padding-top:2px;background:url(admn09.jpg) no-repeat;font-size:12px;color:#fff;font-weight:normal;}
+.comiis_adBm ul {padding:5px 0 0 11px;}
+.comiis_adBm ul li {line-height:26px;text-indent:2em;font-family:Arial,Helvetica,sans-serif;}
+.comiis_adBm ul li a{font-family:Arial,Helvetica,sans-serif;font-size:11px;}
+.comiis_adBm ul li span{font-size:11px;}
+.csadBm-li01 {text-indent:0px;}
+.csadBm-li01 a{padding:0px 8px 0px 0px;}
+.csadBm-li01 img{padding-right:2px;}
+.csadBm-li02 {background:url(admn11.jpg) no-repeat left center;}
+.csadBm-li03 {background:url(admn12.jpg) no-repeat left center;}
+.csadBm-li04 {background:url(admn13.jpg) no-repeat left center;color:#117700;}
+.csadBm-li04 a{color:#117700;}

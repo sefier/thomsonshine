@@ -1,0 +1,69 @@
+<?php
+
+$tipsType = $GLOBALS['xwb_tips_type'];
+$site_uid = XWB_S_UID;
+$sina_uid = XWB_plugin::getBindInfo("sina_uid");
+$siteVer = XWB_S_VERSION ;
+$siteName = str_replace("'","\'", $GLOBALS['_G']['setting']['bbname'] ) ;
+$pName = CURSCRIPT. '_'. CURMODULE;
+$regUrl = XWB_plugin::URL("xwbSiteInterface.reg");
+$setUrl = XWB_plugin::URL("xwbSiteInterface.bind");
+$bindUrl = XWB_plugin::URL("xwbSiteInterface.bind");
+$signerUrl = XWB_plugin::URL("xwbSiteInterface.signer");
+$authUrl = XWB_plugin::URL("xwbAuth.login");
+$getTipsUrl = XWB_plugin::URL("xwbSiteInterface.getTips");
+$attentionUrl = XWB_plugin::URL("xwbSiteInterface.attention");
+$wbxUrl = XWB_plugin::pCfg("wbx_url");
+$xwb_loadScript1 =  XWB_plugin::getPluginUrl('images/dlg.js');
+$xwb_loadScript2 =  XWB_plugin::getPluginUrl('images/xwb.js');
+$xwb_css_base = XWB_plugin::getPluginUrl('images/xwb_base.css');
+$xwb_css_append = XWB_plugin::getPluginUrl('images/xwb_'. XWB_S_VERSION. '.css');
+
+
+$return = <<<EOF
+<script language="javascript">
+var _xwb_cfg_data ={
+	tipsType:	'$tipsType',site_uid:	'$site_uid',sina_uid:	'$sina_uid',
+	siteVer:	'$siteVer',siteName:	'$siteName',pName:'$pName',
+	regUrl:		'$regUrl',
+	setUrl:		'$setUrl',
+	bindUrl:	'$bindUrl',
+	signerUrl:	'$signerUrl',
+	authUrl:	'$authUrl',
+	getTipsUrl:	'$getTipsUrl',
+	attentionUrl:	'$attentionUrl',
+	wbxUrl:		'$wbxUrl'
+};
+
+function xwb_loadScript(file, charset){
+	var script = document.createElement('SCRIPT');
+	script.type = 'text/javascript'; script.charset = charset; script.src = file;
+	document.getElementsByTagName('HEAD')[0].appendChild(script);
+}
+xwb_loadScript("$xwb_loadScript1", "UTF-8");
+xwb_loadScript("$xwb_loadScript2", "UTF-8");
+</script>
+<link href="$xwb_css_base" rel="stylesheet" type="text/css" />
+<link href="$xwb_css_append" rel="stylesheet" type="text/css" />
+
+EOF;
+
+$sess = XWB_plugin::getUser();
+$xwb_statInfo = $sess->getStat();
+foreach( $xwb_statInfo as $k => $stat ){
+	$xwb_statType = isset($stat['xt']) ? (string)$stat['xt'] : 'unknown';
+	$return .= XWB_plugin::statUrl( $xwb_statType, $stat, true );
+}
+
+if( !empty($xwb_statInfo) ){
+	$sess->clearStat();
+}
+
+//评论回推前期运行（改在global footer运行）
+if(  XWB_plugin::pCfg('is_pushback_open') && rand(1,100) <= 14 ){
+	$pushInstance = XWB_Plugin::O('pushbackDispatcher');
+	$pushInstance->prepare();
+}
+
+
+?>
