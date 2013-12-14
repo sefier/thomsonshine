@@ -4,7 +4,7 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
  *      This is NOT a freeware, use is subject to license terms
  *
- *      $Id: admincp_menu.php 21972 2011-04-19 02:51:52Z monkey $
+ *      $Id: admincp_menu.php 33989 2013-09-13 10:11:27Z nemohou $
  */
 
 global $_G;
@@ -25,6 +25,7 @@ $topmenu = array (
 	'portal' => '',
 	'forum' => '',
 	'group' => '',
+	'safe' => '',
 	'extended' => '',
 	'plugin' => $isfounder ? 'plugins' : '',
 	'tools' => '',
@@ -45,10 +46,10 @@ $menu['global'] = array(
 	array('menu_setting_optimize', 'setting_cachethread'),
 	array('menu_setting_seo', 'setting_seo'),
 	array('menu_setting_domain', 'domain'),
+	array('menu_setting_follow', 'setting_follow'),
 	array('menu_setting_home', 'setting_home'),
 	array('menu_setting_user', 'setting_permissions'),
 	array('menu_setting_credits', 'setting_credits'),
-	array('menu_setting_sec', 'setting_sec'),
 	array('menu_setting_datetime', 'setting_datetime'),
 	array('menu_setting_attachments', 'setting_attach'),
 	array('menu_setting_imgwater', 'setting_imgwater'),
@@ -57,10 +58,11 @@ $menu['global'] = array(
 	array('menu_setting_district', 'district'),
 	array('menu_setting_ranklist', 'setting_ranklist'),
 	array('menu_setting_mobile', 'setting_mobile'),
+	array('menu_setting_antitheft', 'setting_antitheft'),
 );
 
 $menu['style'] = array(
-	array('menu_setting_customnav', 'nav_headernav'),
+	array('menu_setting_customnav', 'nav'),
 	array('menu_setting_styles', 'setting_styles'),
 	array('menu_styles', 'styles'),
 	$isfounder ? array('menu_styles_templates', 'templates') : null,
@@ -76,6 +78,7 @@ $menu['topic'] = array(
 	array('menu_posting_censors', 'misc_censor'),
 	array('menu_maint_report', 'report'),
 	array('menu_setting_tag', 'tag'),
+	array('menu_setting_collection', 'collection'),
 	array(cplang('nav_forum'), '', 1),
 		array('menu_maint_threads', 'threads'),
 		array('menu_maint_prune', 'prune'),
@@ -90,12 +93,12 @@ $menu['topic'] = array(
     		array('menu_moderate_recyclebin', 'recyclebin'),
 		array('menu_moderate_recyclebinpost', 'recyclebinpost'),
 		array('menu_threads_forumstick', 'threads_forumstick'),
-		array('menu_post_position_index', 'threads_postposition'),
 		array('menu_postcomment', 'postcomment'),
 	array(cplang('thread'), '', 2),
 	array(cplang('nav_home'), '', 1),
 		array('menu_maint_doing', 'doing'),
 		array('menu_maint_blog', 'blog'),
+		array('menu_maint_blog_recycle_bin', 'blogrecyclebin'),
 		array('menu_maint_feed', 'feed'),
 		array('menu_maint_album', 'album'),
 		array('menu_maint_pic', 'pic'),
@@ -110,13 +113,15 @@ $menu['user'] = array(
 	array('menu_members_profile', 'members_profile'),
 	array('menu_members_stat', 'members_stat'),
 	array('menu_members_newsletter', 'members_newsletter'),
+	array('menu_members_mobile', 'members_newsletter_mobile'),
+	array('menu_usertag', 'usertag'),
 	array('menu_members_edit_ban_user', 'members_ban'),
 	array('menu_members_ipban', 'members_ipban'),
 	array('menu_members_credits', 'members_reward'),
 	array('menu_moderate_modmembers', 'moderate_members'),
 	array('menu_admingroups', 'admingroup'),
 	array('menu_usergroups', 'usergroups'),
-	array('menu_hotuser', 'specialuser_hotuser'),
+	array('menu_follow', 'specialuser_follow'),
 	array('menu_defaultuser', 'specialuser_defaultuser'),
 	array('members_verify_profile', 'verify_verify'),
 	array('menu_members_verify_setting', 'verify'),
@@ -134,10 +139,12 @@ $menu['portal'] = array(
 	array('menu_portalcategory', 'portalcategory'),
 	array('menu_article', 'article'),
 	array('menu_topic', 'topic'),
+	array('menu_html', 'makehtml'),
 	array('menu_diytemplate', 'diytemplate'),
 	array('menu_block', 'block'),
 	array('menu_blockstyle', 'blockstyle'),
 	array('menu_blockxml', 'blockxml'),
+	array('menu_portalpermission', 'portalpermission'),
 	array('menu_blogcategory', 'blogcategory'),
 	array('menu_albumcategory', 'albumcategory'),
 );
@@ -146,6 +153,7 @@ $menu['forum'] = array(
 	array('menu_forums', 'forums'),
 	array('menu_forums_merge', 'forums_merge'),
 	array('menu_forums_infotypes', 'threadtypes'),
+	array('menu_grid', 'grid'),
 );
 
 $menu['group'] = array(
@@ -154,6 +162,15 @@ $menu['group'] = array(
 	array('menu_group_manage', 'group_manage'),
 	array('menu_group_userperm', 'group_userperm'),
 	array('menu_group_level', 'group_level'),
+	array('menu_group_mod', 'group_mod'),
+);
+
+$menu['safe'] = array(
+	array('menu_safe_setting', 'setting_sec'),
+	array('menu_safe_security', 'cloud_security'),
+	array('menu_safe_seccheck', 'setting_seccheck'),
+	array('menu_security', 'optimizer_security'),
+	array('menu_safe_accountguard', 'setting_accountguard'),
 );
 
 $menu['extended'] = array(
@@ -172,7 +189,7 @@ $menu['extended'] = array(
 
 if(file_exists($menudir = DISCUZ_ROOT.'./source/admincp/menu')) {
 	$adminextend = $adminextendnew = array();
-	if(file_exists($adminextendfile = DISCUZ_ROOT.'./data/cache/cache_adminextend.php')) {
+	if(file_exists($adminextendfile = DISCUZ_ROOT.'./data/sysdata/cache_adminextend.php')) {
 		@include $adminextendfile;
 	}
 	$menudirhandle = dir($menudir);
@@ -194,14 +211,17 @@ if(file_exists($menudir = DISCUZ_ROOT.'./source/admincp/menu')) {
 
 if($isfounder) {
 	$menu['plugin'] = array(
-		array('menu_addons', 'addons'),
+		array('menu_addons', 'cloudaddons'),
 		array('menu_plugins', 'plugins'),
 	);
 }
 loadcache('adminmenu');
 if(is_array($_G['cache']['adminmenu'])) {
 	foreach($_G['cache']['adminmenu'] as $row) {
-		$menu['plugin'][] = array($row['name'], $row['action']);
+		if($row['name'] == 'plugins_system') {
+			$row['name'] = cplang('plugins_system');
+		}
+		$menu['plugin'][] = array($row['name'], $row['action'], $row['sub']);
 	}
 }
 if(!$menu['plugin']) {
@@ -215,6 +235,8 @@ $menu['tools'] = array(
 	array('menu_misc_cron', 'misc_cron'),
 	$isfounder ? array('menu_tools_fileperms', 'tools_fileperms') : null,
 	$isfounder ? array('menu_tools_filecheck', 'checktools_filecheck') : null,
+	$isfounder ? array('menu_tools_hookcheck', 'checktools_hookcheck') : null,
+	$isfounder ? array('menu_cloud_doctor', 'cloud_doctor') : null,
 );
 if($isfounder) {
 	$topmenu['founder'] = '';
@@ -222,10 +244,14 @@ if($isfounder) {
 	$menu['founder'] = array(
 		array('menu_founder_perm', 'founder_perm'),
 		array('menu_setting_mail', 'setting_mail'),
+		array('menu_patch', 'patch'),
 		array('menu_setting_uc', 'setting_uc'),
 		array('menu_db', 'db_export'),
+		array('menu_membersplit', 'membersplit_check'),
 		array('menu_postsplit', 'postsplit_manage'),
 		array('menu_threadsplit', 'threadsplit_manage'),
+		array('menu_upgrade', 'upgrade'),
+		array('menu_optimizer', 'optimizer_performance'),
 	);
 
 	$menu['uc'] = array();

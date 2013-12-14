@@ -1,0 +1,173 @@
+@charset "utf-8";
+
+/* ============================== */
+/* 
+  - Title: Cheff Under Construction Page
+  - Autor: Frekvenca spleta s.p. / Frequency Themes
+  - Email: info@frekvencaspleta.si
+  - Version: 1.00
+*/
+/* ============================== */
+
+/* Fonts --------------------------------------------------------*/
+@font-face {
+    font-family: 'pacificoregular';
+    src: url('../fonts/pacifico-webfont.eot');
+    src: url('../fonts/pacifico-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/pacifico-webfont.woff') format('woff'),
+         url('../fonts/pacifico-webfont.ttf') format('truetype'),
+         url('../fonts/pacifico-webfont.svg#pacificoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/******************************* RESET *******************************/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video 
+{margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent;}
+html {overflow-y: scroll;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display:block;}
+ul {list-style:none;}
+blockquote, q {quotes:none;}
+blockquote:before, blockquote:after, q:before, q:after {content:''; content:none;}
+a {margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent;}
+ins {background-color:#ff9; color:#000; text-decoration:none;}
+mark {background-color:#ff9; color:#000; font-style:italic; font-weight:bold;}
+del {text-decoration: line-through;}
+abbr[title], dfn[title] {border-bottom:1px dotted; cursor:help;}
+table {border-collapse:collapse; border-spacing:0;}
+hr {display:block; height:0; background-color: #c7c7c7; border-top: 1px solid #c7c7c7; border-left:0; border-right:0; border-bottom: 1px solid #FFF; margin:1em 0; padding:0;}
+*+html hr {height: 2px;}
+
+/* Standar Styles --------------------------------------------------------*/
+body {
+  background: url('../images/cheffbg-repeat.jpg');
+}
+.background {
+  width: 100%;
+  background: url('../images/cheffbg.jpg') no-repeat center top;
+}
+a {
+  text-decoration: none;  
+}
+a:hover {
+  text-decoration: underline;  
+}
+p {
+
+}
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+  color: #834833;
+  font-weight: normal;
+}
+
+/* Content Styles --------------------------------------------------------*/
+.wrapper {
+  margin: 0 auto;
+  width: 870px;
+  position: relative;
+}
+
+.cheff {
+  background: url('../images/chef.png') no-repeat left 96px;
+  height: 965px;
+}
+
+.receipt {
+  display: inline-block;
+  position: absolute;
+  width: 254px;
+  height: 309px;
+  padding: 33px 0 0 65px;
+  background: url('../images/receiptbg.png') no-repeat;
+  top: 395px;
+  right: 0;
+  font-family: 'pacificoregular';
+}
+
+.receipt  h1 {
+  display: inline-block;
+  width: 195px;
+  text-align: center;
+  font-size: 40px;
+  padding-bottom: 16px;
+}
+
+.receipt ul {
+  display: inline-block;
+}
+
+.receipt ul li {
+  display: block;
+  list-style: none;
+}
+
+.receipt ul li {
+  display: block;
+  list-style: none;
+}
+
+.receipt ul li a {
+  display: block;
+  color: #844639;
+  padding-left: 48px;
+  font-size: 18px;
+}
+
+.mail a {
+  background: url('../images/email.png') no-repeat left 4px;
+  padding-bottom: 16px;
+}
+
+.twitter a {
+  background: url('../images/twitter.png') no-repeat left top;
+  padding-bottom: 24px;
+}
+
+.facebook a {
+  background: url('../images/facebook.png') no-repeat left top;
+}
+
+.sign {
+  display: inline-block;
+  position: absolute;
+  top: 715px;
+  left: 0;
+}
+
+.salt-and-papper {
+  display: inline-block;
+  position: absolute;
+  top: 717px;
+  right: 140px;
+}
+
+/* Footer Styles --------------------------------------------------------*/
+footer {
+  margin: 0 auto;
+  width: 870px;
+  padding-bottom: 30px;
+  text-align: center;
+  font-family: Arial;
+  font-size: 17px;
+  font-weight: bold;
+  color: #f1e490;
+  text-shadow: 0.1em 0.1em 0.2em #000;
+}

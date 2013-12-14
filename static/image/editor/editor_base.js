@@ -196,7 +196,6 @@ var arrMatch = {
 	imgInOut:"divInOut",
 	faceBox:"editFaceBox",
 	icoUrl:"createUrl",
-	icoImg:"createImg",
 	icoSwf:"createSwf",
 	icoPage:"createPage"
 }
@@ -353,28 +352,16 @@ function getCaret() {
 	if(gIsIE){
 		window.frames["HtmlEditor"].focus();
 		var ran = window.frames["HtmlEditor"].document.selection.createRange();
-		sLength = ran.text.replace(/\r?\n/g, ' ').length;
-		if(!sLength) {
-			ran = window.frames["HtmlEditor"].document.body.createTextRange();
-		}
-		var rang = document.selection.createRange();
-		rang.setEndPoint("StartToStart", ran);
-		pos = rang.text.replace(/\r?\n/g, ' ').length;
+		pos = ran.getBookmark();
 	}
 }
 function setCaret() {
 	if(gIsIE){
 		window.frames["HtmlEditor"].focus();
-		var r = window.frames["HtmlEditor"].document.body.createTextRange();
-		var textLen = r.text.replace(/\r?\n/g, ' ').length;
-		r.moveStart('character', pos);
-		if(sLength) {
-			var eLen = sLength - (textLen - pos);
-			r.moveEnd('character', eLen);
-		} else {
-			r.collapse(true);
-		}
-		r.select();
+		var range = window.frames["HtmlEditor"].document.body.createTextRange();
+        range.moveToBookmark(pos);
+        range.select();
+        pos = null;
 	}
 }
 
@@ -550,7 +537,10 @@ function pageBreak(e, show) {
 		}
 		var insertText = title ? '[title='+title+']': '';
 		setCaret();
-		format("insertHTML", '###NextPage'+insertText+'###');
+		format("insertHTML", '<br /><strong>##########NextPage'+insertText+'##########</strong><br /><br />');
+		if(parent.showInnerNav && typeof parent.showInnerNav == 'function') {
+			parent.showInnerNav();
+		}
 		fHide($('createPage'));
 	} else {
 		if(gIsIE){
@@ -580,10 +570,12 @@ function changeEditType(flag, ev){
 		var switchMode = $("switchMode");
 		var sourceEditor = $("sourceEditor");
 		var dvHtmlLnk = $("dvHtmlLnk");
+		var dvToolbar = $('dvToolbar');
 		if(flag){
 			dvhtml.style.display = "";
 			dvtext.style.display = "none";
-			dvHtmlLnk.style.display = "none";
+			dvToolbar.className = 'toobar';
+
 			if(switchMode.checked){
 				sourceEditor.value = dvtext.value;
 				$('uchome-editstatus').value = 'code';
@@ -599,7 +591,7 @@ function changeEditType(flag, ev){
 			function sub1(){
 				dvhtml.style.display = "none";
 				dvtext.style.display = "";
-				dvHtmlLnk.style.display = "";
+				dvToolbar.className = 'toobarmini';
 				if(switchMode.checked){
 					dvtext.value = sourceEditor.value.unescapeHTML();
 				}else{
@@ -622,6 +614,16 @@ function changeEditType(flag, ev){
 		}
 	}catch(exp){
 
+	}
+}
+
+function changeEditFull(flag, ev) {
+	if(parent.changeEditFull) {
+		parent.changeEditFull(flag);
+		ev = ev || event;
+		var ele = ev.target || ev.srcElement;
+		ele.innerHTML = flag ? '返回' : '全屏';
+		ele.onclick = function() {changeEditFull(!flag, ev)};
 	}
 }
 String.prototype.stripTags = function(){

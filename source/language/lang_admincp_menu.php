@@ -4,8 +4,12 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
  *      This is NOT a freeware, use is subject to license terms
  *
- *      $Id: lang_admincp_menu.php 21679 2011-04-08 04:13:12Z congyushuai $
+ *      $Id: lang_admincp_menu.php 34034 2013-09-24 01:23:05Z nemohou $
  */
+
+if(!defined('IN_DISCUZ')) {
+	exit('Access Denied');
+}
 
 $lang = array
 (
@@ -17,25 +21,26 @@ $lang = array
 	'header_user' => '用户',
 	'header_topic' => '内容',
 	'header_extended' => '运营',
-	'header_plugin' => '插件',
+	'header_plugin' => '应用',
 	'header_style' => '界面',
 	'header_adv' => '广告',
 	'header_tools' => '工具',
 	'header_uc' => 'UCenter',
-	'header_welcome' => '你好',
+	'header_welcome' => '您好',
 	'header_logout' => '退出',
 	'header_bbs' => '站点首页',
 	'header_portal' => '门户',
 	'header_group' => '群组',
+	'header_safe' => '防灌水',
 	'header_founder' => '站长',
-	'header_addons' => '扩展中心',
+	'header_cloudaddons' => '应用中心',
 
 
 	'menu_home' => '管理中心首页',
 	'menu_home_clearhistorymenus' => '清空历史操作',
 
 	'menu_setting_basic' => '站点信息',
-	'menu_setting_access' => '注册与访问',
+	'menu_setting_access' => '注册与访问控制',
 	'menu_setting_customnav' => '导航设置',
 	'menu_setting_styles' => '界面设置',
 	'menu_setting_optimize' => '性能优化',
@@ -51,22 +56,27 @@ $lang = array
 	'menu_setting_imgwater' => '水印设置',
 	'menu_setting_uc' => 'UCenter 设置',
 	'menu_setting_uchome' => 'UCHome 设置',
+	'menu_setting_follow' => '广播设置',
 	'menu_setting_home' => '空间设置',
 	'menu_setting_search' => '搜索设置',
 	'menu_setting_district' => '地区设置',
 	'menu_setting_ranklist' => '排行榜设置',
 	'menu_setting_mobile' => '手机版访问设置',
 	'menu_setting_tag' => '标签管理',
+	'menu_setting_antitheft' => '防采集设置',
 
 	'menu_forums' => '版块管理',
 	'menu_forums_merge' => '版块合并',
 	'menu_forums_threadtypes' => '主题分类',
 	'menu_forums_infotypes' => '分类信息',
 	'menu_forums_infooption' => '分类信息选项',
+	'menu_grid' => '首页四格',
 
 	'menu_members_add' => '添加用户',
 	'menu_members_edit' => '用户管理',
 	'menu_members_newsletter' => '发送通知',
+	'menu_members_mobile' => '发送手机通知',
+	'menu_usertag' => '用户标签',
 	'menu_members_edit_ban_user' => '禁止用户',
 	'menu_members_ipban' => '禁止 IP',
 	'menu_members_credits' => '积分奖惩',
@@ -74,11 +84,11 @@ $lang = array
 	'menu_members_profile_group' => '用户栏目分组',
 	'menu_members_verify_setting' => '认证设置',
 	'menu_members_stat' => '资料统计',
-	'menu_moderate_modmembers' => '审核新用户',
+	'menu_moderate_modmembers' => '审核用户',
 	'menu_profilefields' => '用户栏目定制',
 	'menu_admingroups' => '管理组',
 	'menu_usergroups' => '用户组',
-	'menu_hotuser' => '明星会员',
+	'menu_follow' => '推荐关注',
 	'menu_defaultuser' => '推荐好友',
 
 	'menu_moderate_posts' => '内容审核',
@@ -95,6 +105,7 @@ $lang = array
 	'menu_maint_threads_group' => '群组主题管理',
 	'menu_maint_prune_group' => '群组批量删帖',
 	'menu_maint_attaches_group' => '群组附件管理',
+	'menu_setting_collection' => '淘帖管理',
 	'menu_posting_tags' => '标签管理',
 	'menu_posting_censors' => '词语过滤',
 	'menu_maint_report' => '用户举报',
@@ -103,6 +114,7 @@ $lang = array
 	'menu_postcomment' => '帖子点评管理',
 	'menu_maint_doing' => '记录管理',
 	'menu_maint_blog' => '日志管理',
+	'menu_maint_blog_recycle_bin' => '日志回收站',
 	'menu_maint_feed' => '动态管理',
 	'menu_maint_album' => '相册管理',
 	'menu_maint_pic' => '图片管理',
@@ -119,7 +131,12 @@ $lang = array
 	'menu_founder_permgrouplist' => '编辑权限 - {perm}',
 	'menu_founder_memberperm' => '编辑团队成员 - {username}',
 
-	'menu_addons' => '扩展中心',
+	'menu_patch' => '安全中心',
+	'menu_upgrade' => '在线升级',
+	'menu_optimizer' => '优化大师',
+	'menu_security' => '安全大师',
+
+	'menu_addons' => '应用中心',
 	'menu_plugins' => '插件',
 	'menu_tasks' => '站点任务',
 	'menu_magics' => '道具中心',
@@ -151,11 +168,13 @@ $lang = array
 	'menu_tools_relatedtag' => ' 标签聚合',
 	'menu_tools_creditwizard' => '积分策略向导',
 	'menu_tools_fileperms' => '文件权限检查',
+	'menu_tools_hookcheck' => '嵌入点校验',
 	'menu_tools_filecheck' => '文件校验',
 	'menu_forum_scheme' => '站点方案管理',
 	'menu_db' => '数据库',
 	'menu_postsplit' => '帖子分表',
 	'menu_threadsplit' => '主题分表',
+	'menu_membersplit' => '用户表优化',
 	'menu_logs' => '运行记录',
 	'menu_custommenu_manage' => '常用操作管理',
 	'menu_misc_cron' => '计划任务',
@@ -166,8 +185,10 @@ $lang = array
 	'menu_albumcategory' => '相册分类',
 	'menu_block' => '模块管理',
 	'menu_blockstyle' => '模块模板',
+	'menu_portalpermission' => '权限列表',
 	'menu_blockxml' => '第三方模块',
 	'menu_topic' => '专题管理',
+	'menu_html' => 'HTML管理',
 	'menu_diytemplate' => '页面管理',
 
 	'menu_group_setting' => '群组设置',
@@ -175,9 +196,17 @@ $lang = array
 	'menu_group_manage' => '群组管理',
 	'menu_group_userperm' => '群主权限',
 	'menu_group_level' => '群组等级',
+	'menu_group_mod' => '审核群组',
+
+	'menu_safe_setting' => '基本设置',
+	'menu_safe_security' => '防水墙',
+	'menu_safe_seccheck' => '验证设置',
+	'menu_safe_accountguard' => '帐号保镖',
 
 	'menu_setting_manyou' => 'Manyou 设置',
 	'menu_setting_qqconnect' => 'QQ 绑定设置',
+
+	'menu_cloud_doctor' => '诊断工具',
 
 	'admincp_title' => $_G['setting']['bbname'].' 管理中心',
 

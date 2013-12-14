@@ -4,16 +4,17 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
  *      This is NOT a freeware, use is subject to license terms
  *
- *      $Id: cron_threadexpiry_hourly.php 16910 2010-09-16 16:01:23Z cnteacher $
+ *      $Id: cron_threadexpiry_hourly.php 33625 2013-07-19 06:03:49Z nemohou $
  */
 
 if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
 
+C::t('common_seccheck')->delete_expiration();
+
 $actionarray = array();
-$query = DB::query("SELECT * FROM ".DB::table('forum_threadmod')." WHERE expiration>'0' AND expiration<'$_G[timestamp]' AND status='1'");
-while($expiry = DB::fetch($query)) {
+foreach(C::t('forum_threadmod')->fetch_all_by_expiration_status($_G['timestamp']) as $expiry) {
 	switch($expiry['action']) {
 		case 'EST':	$actionarray['UES'][] = $expiry['tid']; break;
 		case 'EHL':	$actionarray['UEH'][] = $expiry['tid'];	break;
@@ -31,48 +32,44 @@ if($actionarray) {
 
 	foreach($actionarray as $action => $tids) {
 
-		$tids = implode(',', $tids);
 
 		switch($action) {
 
 			case 'UES':
-				DB::query("UPDATE ".DB::table('forum_thread')." SET displayorder='0' WHERE tid IN ($tids)", 'UNBUFFERED');
-				DB::query("UPDATE ".DB::table('forum_threadmod')." SET status='0' WHERE tid IN ($tids) AND action IN ('EST', 'TOK')", 'UNBUFFERED');
-
+				C::t('forum_thread')->update($actionarray[$action], array('displayorder'=>0), true);
+				C::t('forum_threadmod')->update_by_tid_action($tids, array('EST', 'TOK'), array('status'=>0));
 				require_once libfile('function/cache');
 				updatecache('globalstick');
 				break;
 
 			case 'UEH':
-				DB::query("UPDATE ".DB::table('forum_thread')." SET highlight='0' WHERE tid IN ($tids)", 'UNBUFFERED');
-				DB::query("UPDATE ".DB::table('forum_threadmod')." SET status='0' WHERE tid IN ($tids) AND action IN ('EHL', 'CCK')", 'UNBUFFERED');
+				C::t('forum_thread')->update($actionarray[$action], array('highlight'=>0), true);
+				C::t('forum_threadmod')->update_by_tid_action($tids, array('EHL', 'CCK'), array('status'=>0));
 				break;
 
 			case 'UEC':
 			case 'UEO':
 				$closed = $action == 'UEO' ? 1 : 0;
-				DB::query("UPDATE ".DB::table('forum_thread')." SET closed='$closed' WHERE tid IN ($tids)", 'UNBUFFERED');
-				DB::query("UPDATE ".DB::table('forum_threadmod')." SET status='0' WHERE tid IN ($tids) AND action IN ('EOP', 'ECL', 'CLK')", 'UNBUFFERED');
+				C::t('forum_thread')->update($actionarray[$action], array('closed'=>$closed), true);
+				C::t('forum_threadmod')->update_by_tid_action($tids, array('EOP', 'ECL', 'CLK'), array('status'=>0));
 				break;
 
 			case 'UED':
-				DB::query("UPDATE ".DB::table('forum_threadmod')." SET status='0' WHERE tid IN ($tids) AND action='EDI'", 'UNBUFFERED');
-
+				C::t('forum_threadmod')->update_by_tid_action($tids, array('EDI'), array('status'=>0));
 				$digestarray = $authoridarry = array();
-				$query = DB::query("SELECT authorid, digest FROM ".DB::table('forum_thread')." WHERE tid IN ($tids)");
-				while($digest = DB::fetch($query)) {
+				foreach(C::t('forum_thread')->fetch_all_by_tid($actionarray[$action]) as $digest) {
 					$authoridarry[] = $digest['authorid'];
 					$digestarray[$digest['digest']][] = $digest['authorid'];
 				}
 				foreach($digestarray as $digest => $authorids) {
 					batchupdatecredit('digest', $authorids, array("digestposts=digestposts+'-1'"), -$digest, $fid = 0);
 				}
-				DB::query("UPDATE ".DB::table('forum_thread')." SET digest='0' WHERE tid IN ($tids)", 'UNBUFFERED');
+				C::t('forum_thread')->update($actionarray[$action], array('digest'=>0), true);
 				break;
 
 			case 'SPD':
-				DB::query("UPDATE ".DB::table('forum_thread')." SET stamp='-1' WHERE tid IN ($tids)", 'UNBUFFERED');
-				DB::query("UPDATE ".DB::table('forum_threadmod')." SET status='0' WHERE tid IN ($tids) AND action IN ('SPA')", 'UNBUFFERED');
+				C::t('forum_thread')->update($actionarray[$action], array('stamp'=>-1), true);
+				C::t('forum_threadmod')->update_by_tid_action($tids, array('SPA'), array('status'=>0));
 				break;
 
 		}

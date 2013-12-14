@@ -12,6 +12,7 @@ $_config['db']['1']['pconnect'] = '0';
 $_config['db']['1']['dbname'] = 'forum_new';
 $_config['db']['1']['tablepre'] = 'pre_';
 $_config['db']['common']['slave_except_table'] = '';
+$_config['db']['slave'] = '';
 
 // --------------------------  CONFIG MEMORY  --------------------------- //
 $_config['memory']['prefix'] = 'KHrynw_';
@@ -22,6 +23,13 @@ $_config['memory']['memcache']['port'] = 11211;
 $_config['memory']['memcache']['pconnect'] = 1;
 $_config['memory']['memcache']['timeout'] = 1;
 $_config['memory']['apc'] = 1;
+$_config['memory']['redis']['server'] = '';
+$_config['memory']['redis']['port'] = 6379;
+$_config['memory']['redis']['pconnect'] = 1;
+$_config['memory']['redis']['timeout'] = '0';
+$_config['memory']['redis']['requirepass'] = '';
+$_config['memory']['redis']['serializer'] = 1;
+$_config['memory']['wincache'] = 1;
 
 // --------------------------  CONFIG SERVER  --------------------------- //
 $_config['server']['id'] = 1;
@@ -52,7 +60,7 @@ $_config['cookie']['cookiepath'] = '/';
 // -------------------------  CONFIG SECURITY  -------------------------- //
 $_config['security']['authkey'] = '952ca8BDPekJ1vv6';
 $_config['security']['urlxssdefend'] = 1;
-$_config['security']['attackevasive'] = 0;
+$_config['security']['attackevasive'] = '0';
 $_config['security']['querysafe']['status'] = 1;
 $_config['security']['querysafe']['dfunction']['0'] = 'load_file';
 $_config['security']['querysafe']['dfunction']['1'] = 'hex';
@@ -64,6 +72,9 @@ $_config['security']['querysafe']['daction']['0'] = 'intooutfile';
 $_config['security']['querysafe']['daction']['1'] = 'intodumpfile';
 $_config['security']['querysafe']['daction']['2'] = 'unionselect';
 $_config['security']['querysafe']['daction']['3'] = '(select';
+$_config['security']['querysafe']['daction']['4'] = '(select';
+$_config['security']['querysafe']['daction']['5'] = 'unionall';
+$_config['security']['querysafe']['daction']['6'] = 'uniondistinct';
 $_config['security']['querysafe']['dnote']['0'] = '/*';
 $_config['security']['querysafe']['dnote']['1'] = '*/';
 $_config['security']['querysafe']['dnote']['2'] = '#';
@@ -85,6 +96,9 @@ $_config['remote']['on'] = '0';
 $_config['remote']['dir'] = 'remote';
 $_config['remote']['appkey'] = '62cf0b3c3e6a4c9468e7216839721d8e';
 $_config['remote']['cron'] = '0';
+
+// ---------------------------  CONFIG INPUT  --------------------------- //
+$_config['input']['compatible'] = 1;
 
 
 // -------------------  THE END  -------------------- //

@@ -1,14 +1,14 @@
 /*
-	[Discuz!] (C)2001-2009 Comsenz Inc.
+	[Discuz!] (C)2001-2099 Comsenz Inc.
 	This is NOT a freeware, use is subject to license terms
 
-	$Id: common.js 24745 2011-10-10 05:58:53Z monkey $
+	$Id: common.js 34029 2013-09-23 06:51:33Z nemohou $
 */
 
 var BROWSER = {};
 var USERAGENT = navigator.userAgent.toLowerCase();
-browserVersion({'ie':'msie','firefox':'','chrome':'','opera':'','safari':'','mozilla':'','webkit':'','maxthon':'','qq':'qqbrowser'});
-if(BROWSER.safari) {
+browserVersion({'ie':'msie','firefox':'','chrome':'','opera':'','safari':'','mozilla':'','webkit':'','maxthon':'','qq':'qqbrowser','rv':'rv'});
+if(BROWSER.safari || BROWSER.rv) {
 	BROWSER.firefox = true;
 }
 BROWSER.opera = BROWSER.opera ? opera.version() : 0;
@@ -28,9 +28,6 @@ JSMENU['drag'] = [];
 JSMENU['layer'] = 0;
 JSMENU['zIndex'] = {'win':200,'menu':300,'dialog':400,'prompt':500};
 JSMENU['float'] = '';
-var AJAX = [];
-AJAX['url'] = [];
-AJAX['stack'] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var CURRENTSTYPE = null;
 var discuz_uid = isUndefined(discuz_uid) ? 0 : discuz_uid;
 var creditnotice = isUndefined(creditnotice) ? '' : creditnotice;
@@ -47,8 +44,24 @@ var USERABOUT_BOX = true;
 var USERCARDST = null;
 var CLIPBOARDSWFDATA = '';
 var NOTICETITLE = [];
+var NOTICECURTITLE = document.title;
 
 if(BROWSER.firefox && window.HTMLElement) {
+	HTMLElement.prototype.__defineGetter__( "innerText", function(){
+		var anyString = "";
+		var childS = this.childNodes;
+		for(var i=0; i <childS.length; i++) {
+			if(childS[i].nodeType==1) {
+				anyString += childS[i].tagName=="BR" ? '\n' : childS[i].innerText;
+			} else if(childS[i].nodeType==3) {
+				anyString += childS[i].nodeValue;
+			}
+		}
+		return anyString;
+	});
+	HTMLElement.prototype.__defineSetter__( "innerText", function(sText){
+		this.textContent=sText;
+	});
 	HTMLElement.prototype.__defineSetter__('outerHTML', function(sHTML) {
 			var r = this.ownerDocument.createRange();
 		r.setStartBefore(this);
@@ -135,7 +148,7 @@ function browserVersion(types) {
 	for(i in types) {
 		var v = types[i] ? types[i] : i;
 		if(USERAGENT.indexOf(v) != -1) {
-			var re = new RegExp(v + '(\\/|\\s)([\\d\\.]+)', 'ig');
+			var re = new RegExp(v + '(\\/|\\s|:)([\\d\\.]+)', 'ig');
 			var matches = re.exec(USERAGENT);
 			var ver = matches != null ? matches[2] : 0;
 			other = ver !== 0 && v != 'mozilla' ? 0 : other;
@@ -196,7 +209,7 @@ function mb_strlen(str) {
 function mb_cutstr(str, maxlen, dot) {
 	var len = 0;
 	var ret = '';
-	var dot = !dot ? '...' : '';
+	var dot = !dot ? '...' : dot;
 	maxlen = maxlen - dot.length;
 	for(var i = 0; i < str.length; i++) {
 		len += str.charCodeAt(i) < 0 || str.charCodeAt(i) > 255 ? (charset == 'utf-8' ? 3 : 2) : 1;
@@ -237,7 +250,7 @@ function checkall(form, prefix, checkall) {
 	count = 0;
 	for(var i = 0; i < form.elements.length; i++) {
 		var e = form.elements[i];
-		if(e.name && e.name != checkall && (!prefix || (prefix && e.name.match(prefix)))) {
+		if(e.name && e.name != checkall && !e.disabled && (!prefix || (prefix && e.name.match(prefix)))) {
 			e.checked = form.elements[checkall].checked;
 			if(e.checked) {
 				count++;
@@ -248,12 +261,14 @@ function checkall(form, prefix, checkall) {
 }
 
 function setcookie(cookieName, cookieValue, seconds, path, domain, secure) {
-	var expires = new Date();
 	if(cookieValue == '' || seconds < 0) {
 		cookieValue = '';
 		seconds = -2592000;
 	}
-	expires.setTime(expires.getTime() + seconds * 1000);
+	if(seconds) {
+		var expires = new Date();
+		expires.setTime(expires.getTime() + seconds * 1000);
+	}
 	domain = !domain ? cookiedomain : domain;
 	path = !path ? cookiepath : path;
 	document.cookie = escape(cookiepre + cookieName) + '=' + escape(cookieValue)
@@ -277,9 +292,6 @@ function getcookie(name, nounescape) {
 
 function Ajax(recvType, waitId) {
 
-	for(var stackId = 0; stackId < AJAX['stack'].length && AJAX['stack'][stackId] != 0; stackId++);
-	AJAX['stack'][stackId] = 1;
-
 	var aj = new Object();
 
 	aj.loading = '请稍候...';
@@ -289,8 +301,6 @@ function Ajax(recvType, waitId) {
 	aj.resultHandle = null;
 	aj.sendString = '';
 	aj.targetUrl = '';
-	aj.stackId = 0;
-	aj.stackId = stackId;
 
 	aj.setLoading = function(loading) {
 		if(typeof loading !== 'undefined' && loading !== null) aj.loading = loading;
@@ -335,11 +345,6 @@ function Ajax(recvType, waitId) {
 
 	aj.processHandle = function() {
 		if(aj.XMLHttpRequest.readyState == 4 && aj.XMLHttpRequest.status == 200) {
-			for(k in AJAX['url']) {
-				if(AJAX['url'][k] == aj.targetUrl) {
-					AJAX['url'][k] = null;
-				}
-			}
 			if(aj.waitId) {
 				aj.waitId.style.display = 'none';
 			}
@@ -351,44 +356,38 @@ function Ajax(recvType, waitId) {
 				} else {
 					aj.resultHandle(aj.XMLHttpRequest.responseXML.lastChild.firstChild.nodeValue, aj);
 				}
+			} else if(aj.recvType == 'JSON') {
+				var s = null;
+				try {
+					s = (new Function("return ("+aj.XMLHttpRequest.responseText+")"))();
+				} catch (e) {
+					s = null;
+				}
+				aj.resultHandle(s, aj);
 			}
-			AJAX['stack'][aj.stackId] = 0;
 		}
 	};
 
 	aj.get = function(targetUrl, resultHandle) {
 		targetUrl = hostconvert(targetUrl);
 		setTimeout(function(){aj.showLoading()}, 250);
-		if(in_array(targetUrl, AJAX['url'])) {
-			return false;
-		} else {
-			AJAX['url'].push(targetUrl);
-		}
 		aj.targetUrl = targetUrl;
 		aj.XMLHttpRequest.onreadystatechange = aj.processHandle;
 		aj.resultHandle = resultHandle;
 		var attackevasive = isUndefined(attackevasive) ? 0 : attackevasive;
-		var delay = attackevasive & 1 ? (aj.stackId + 1) * 1001 : 100;
 		if(window.XMLHttpRequest) {
-			setTimeout(function(){
 			aj.XMLHttpRequest.open('GET', aj.targetUrl);
 			aj.XMLHttpRequest.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-			aj.XMLHttpRequest.send(null);}, delay);
+			aj.XMLHttpRequest.send(null);
 		} else {
-			setTimeout(function(){
 			aj.XMLHttpRequest.open("GET", targetUrl, true);
 			aj.XMLHttpRequest.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-			aj.XMLHttpRequest.send();}, delay);
+			aj.XMLHttpRequest.send();
 		}
 	};
 	aj.post = function(targetUrl, sendString, resultHandle) {
 		targetUrl = hostconvert(targetUrl);
 		setTimeout(function(){aj.showLoading()}, 250);
-		if(in_array(targetUrl, AJAX['url'])) {
-			return false;
-		} else {
-			AJAX['url'].push(targetUrl);
-		}
 		aj.targetUrl = targetUrl;
 		aj.sendString = sendString;
 		aj.XMLHttpRequest.onreadystatechange = aj.processHandle;
@@ -397,6 +396,14 @@ function Ajax(recvType, waitId) {
 		aj.XMLHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		aj.XMLHttpRequest.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 		aj.XMLHttpRequest.send(aj.sendString);
+	};
+	aj.getJSON = function(targetUrl, resultHandle) {
+		aj.setRecvType('JSON');
+		aj.get(targetUrl+'&ajaxdata=json', resultHandle);
+	};
+	aj.getHTML = function(targetUrl, resultHandle) {
+		aj.setRecvType('HTML');
+		aj.get(targetUrl+'&ajaxdata=html', resultHandle);
 	};
 	return aj;
 }
@@ -513,14 +520,14 @@ function $F(func, args, script) {
 		if(check) {
 			eval(func + '(' + s.substr(1) + ')');
 		} else {
-			setTimeout(function () { checkrun(); }, 50);
+			setTimeout(function () {checkrun();}, 50);
 		}
 	};
 	var checkrun = function () {
 		if(JSLOADED[src]) {
 			run();
 		} else {
-			setTimeout(function () { checkrun(); }, 50);
+			setTimeout(function () {checkrun();}, 50);
 		}
 	};
 	script = script || 'common_extra';
@@ -636,7 +643,8 @@ function ajaxpost(formid, showid, waitid, showidclass, submitbtn, recall) {
 	var showidclass = !showidclass ? '' : showidclass;
 	var ajaxframeid = 'ajaxframe';
 	var ajaxframe = $(ajaxframeid);
-	var formtarget = $(formid).target;
+	var curform = $(formid);
+	var formtarget = curform.target;
 
 	var handleResult = function() {
 		var s = '';
@@ -675,7 +683,7 @@ function ajaxpost(formid, showid, waitid, showidclass, submitbtn, recall) {
 			ajaxinnerhtml($(showid), s);
 		}
 		ajaxerror = null;
-		if($(formid)) $(formid).target = formtarget;
+		if(curform) curform.target = formtarget;
 		if(typeof recall == 'function') {
 			recall();
 		} else {
@@ -683,7 +691,16 @@ function ajaxpost(formid, showid, waitid, showidclass, submitbtn, recall) {
 		}
 		if(!evaled) evalscript(s);
 		ajaxframe.loading = 0;
-		$('append_parent').removeChild(ajaxframe.parentNode);
+		if(!BROWSER.firefox || BROWSER.safari) {
+			$('append_parent').removeChild(ajaxframe.parentNode);
+		} else {
+			setTimeout(
+				function(){
+					$('append_parent').removeChild(ajaxframe.parentNode);
+				},
+				100
+			);
+		}
 	};
 	if(!ajaxframe) {
 		var div = document.createElement('div');
@@ -698,11 +715,11 @@ function ajaxpost(formid, showid, waitid, showidclass, submitbtn, recall) {
 	_attachEvent(ajaxframe, 'load', handleResult);
 
 	showloading();
-	$(formid).target = ajaxframeid;
-	var action = $(formid).getAttribute('action');
+	curform.target = ajaxframeid;
+	var action = curform.getAttribute('action');
 	action = hostconvert(action);
-	$(formid).action = action.replace(/\&inajax\=1/g, '')+'&inajax=1';
-	$(formid).submit();
+	curform.action = action.replace(/\&inajax\=1/g, '')+'&inajax=1';
+	curform.submit();
 	if(submitbtn) {
 		submitbtn.disabled = true;
 	}
@@ -752,7 +769,7 @@ function ajaxmenu(ctrlObj, timeout, cache, duration, pos, recall, idclass, conte
 		menu.className = idclass;
 		menu.innerHTML = '<div class="' + contentclass + '" id="' + menuid + '_content"></div>';
 		$('append_parent').appendChild(menu);
-		var url = (!isUndefined(ctrlObj.href) ? ctrlObj.href : ctrlObj.attributes['href'].value);
+		var url = (!isUndefined(ctrlObj.attributes['shref']) ? ctrlObj.attributes['shref'].value : (!isUndefined(ctrlObj.href) ? ctrlObj.href : ctrlObj.attributes['href'].value));
 		url += (url.indexOf('?') != -1 ? '&' :'?') + 'ajaxmenu=1';
 		ajaxget(url, menuid + '_content', 'ajaxwaitid', '', '', func);
 	}
@@ -891,6 +908,9 @@ function showMenu(v) {
 	var zindex = isUndefined(v['zindex']) ? JSMENU['zIndex']['menu'] : v['zindex'];
 	var ctrlclass = isUndefined(v['ctrlclass']) ? '' : v['ctrlclass'];
 	var winhandlekey = isUndefined(v['win']) ? '' : v['win'];
+	if(winhandlekey && ctrlObj && !ctrlObj.getAttribute('fwin')) {
+		ctrlObj.setAttribute('fwin', winhandlekey);
+	}
 	zindex = cover ? zindex + 500 : zindex;
 	if(typeof JSMENU['active'][layer] == 'undefined') {
 		JSMENU['active'][layer] = [];
@@ -982,7 +1002,7 @@ function showMenu(v) {
 			coverObj.style.backgroundColor = '#000';
 			coverObj.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=50)';
 			coverObj.style.opacity = 0.5;
-			coverObj.onclick = function () { hideMenu(); };
+			coverObj.onclick = function () {hideMenu();};
 			$('append_parent').appendChild(coverObj);
 			_attachEvent(window, 'load', function () {
 				coverObj.style.height = Math.max(document.documentElement.clientHeight, document.body.offsetHeight) + 'px';
@@ -1045,12 +1065,47 @@ function showMenu(v) {
 	if(layer > JSMENU['layer']) {
 		JSMENU['layer'] = layer;
 	}
+	var hasshow = function(ele) {
+		while(ele.parentNode && ((typeof(ele['currentStyle']) === 'undefined') ? window.getComputedStyle(ele,null) : ele['currentStyle'])['display'] !== 'none') {
+			ele = ele.parentNode;
+		}
+		if(ele === document) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+	if(!menuObj.getAttribute('disautofocus')) {
+		try{
+			var focused = false;
+			var tags = ['input', 'select', 'textarea', 'button', 'a'];
+			for(var i = 0; i < tags.length; i++) {
+				var _all = menuObj.getElementsByTagName(tags[i]);
+				if(_all.length) {
+					for(j = 0; j < _all.length; j++) {
+						if((!_all[j]['type'] || _all[j]['type'] != 'hidden') && hasshow(_all[j])) {
+							_all[j].className += ' hidefocus';
+							_all[j].focus();
+							focused = true;
+							var cobj = _all[j];
+							_attachEvent(_all[j], 'blur', function (){cobj.className = trim(cobj.className.replace(' hidefocus', ''));});
+							break;
+						}
+					}
+				}
+				if(focused) {
+					break;
+				}
+			}
+		} catch (e) {
+		}
+	}
 }
 var delayShowST = null;
 function delayShow(ctrlObj, call, time) {
 	if(typeof ctrlObj == 'object') {
 		var ctrlid = ctrlObj.id;
-		call = call || function () { showMenu(ctrlid); };
+		call = call || function () {showMenu(ctrlid);};
 	}
 	var time = isUndefined(time) ? 500 : time;
 	delayShowST = setTimeout(function () {
@@ -1083,6 +1138,7 @@ function dragMenu(menuObj, e, op) {
 		var menudragnow = [e.clientX, e.clientY];
 		menuObj.style.left = (JSMENU['drag'][2] + menudragnow[0] - JSMENU['drag'][0]) + 'px';
 		menuObj.style.top = (JSMENU['drag'][3] + menudragnow[1] - JSMENU['drag'][1]) + 'px';
+		menuObj.removeAttribute('top_');menuObj.removeAttribute('left_');
 		doane(e);
 	}else if(op == 3) {
 		JSMENU['drag'] = [];
@@ -1312,7 +1368,7 @@ function showTip(ctrlobj) {
 	$F('_showTip', arguments);
 }
 
-function showPrompt(ctrlid, evt, msg, timeout) {
+function showPrompt(ctrlid, evt, msg, timeout, classname) {
 	$F('_showPrompt', arguments);
 }
 
@@ -1328,6 +1384,7 @@ function showDialog(msg, mode, t, func, cover, funccancel, leftmsg, confirmtxt, 
 	mode = in_array(mode, ['confirm', 'notice', 'info', 'right']) ? mode : 'alert';
 	var menuid = 'fwin_dialog';
 	var menuObj = $(menuid);
+	var showconfirm = 1;
 	confirmtxtdefault = '确定';
 	closetime = isUndefined(closetime) ? '' : closetime;
 	closefunc = function () {
@@ -1336,14 +1393,14 @@ function showDialog(msg, mode, t, func, cover, funccancel, leftmsg, confirmtxt, 
 		hideMenu(menuid, 'dialog');
 	};
 	if(closetime) {
-		leftmsg = closetime + ' 秒后窗口关闭';
-		showDialogST = setTimeout(closefunc, closetime * 1000);
+		showPrompt(null, null, '<i>' + msg + '</i>', closetime * 1000, 'popuptext');
+		return;
 	}
 	locationtime = isUndefined(locationtime) ? '' : locationtime;
 	if(locationtime) {
 		leftmsg = locationtime + ' 秒后页面跳转';
 		showDialogST = setTimeout(closefunc, locationtime * 1000);
-		confirmtxtdefault = '立即跳转';
+		showconfirm = 0;
 	}
 	confirmtxt = confirmtxt ? confirmtxt : confirmtxtdefault;
 	canceltxt = canceltxt ? canceltxt : '取消';
@@ -1365,7 +1422,7 @@ function showDialog(msg, mode, t, func, cover, funccancel, leftmsg, confirmtxt, 
 		s += msg ? msg : '';
 	} else {
 		s += '<div class="c altw"><div class="' + (mode == 'alert' ? 'alert_error' : (mode == 'right' ? 'alert_right' : 'alert_info')) + '"><p>' + msg + '</p></div></div>';
-		s += '<p class="o pns">' + (leftmsg ? '<span class="z xg1">' + leftmsg + '</span>' : '') + '<button id="fwin_dialog_submit" value="true" class="pn pnc"><strong>'+confirmtxt+'</strong></button>';
+		s += '<p class="o pns">' + (leftmsg ? '<span class="z xg1">' + leftmsg + '</span>' : '') + (showconfirm ? '<button id="fwin_dialog_submit" value="true" class="pn pnc"><strong>'+confirmtxt+'</strong></button>' : '');
 		s += mode == 'confirm' ? '<button id="fwin_dialog_cancel" value="true" class="pn" onclick="hideMenu(\'' + menuid + '\', \'dialog\')"><strong>'+canceltxt+'</strong></button>' : '';
 		s += '</p>';
 	}
@@ -1411,6 +1468,9 @@ function showWindow(k, url, mode, cache, menuv) {
 			menuObj.url = url;
 			url += (url.search(/\?/) > 0 ? '&' : '?') + 'infloat=yes&handlekey=' + k;
 			url += cache == -1 ? '&t='+(+ new Date()) : '';
+			if(BROWSER.ie &&  url.indexOf('referer=') < 0) {
+				url = url + '&referer=' + encodeURIComponent(location);
+			}
 			ajaxget(url, 'fwin_content_' + k, null, '', '', function() {initMenu();show();});
 		} else if(mode == 'post') {
 			menuObj.act = $(url).action;
@@ -1703,7 +1763,7 @@ function thumbImg(obj, method) {
 }
 
 var zoomstatus = 1;
-function zoom(obj, zimg, nocover, pn) {
+function zoom(obj, zimg, nocover, pn, showexif) {
 	$F('_zoom', arguments);
 }
 
@@ -1726,7 +1786,9 @@ function ctrlEnter(event, btnId, onlyEnter) {
 
 function parseurl(str, mode, parsecode) {
 	if(isUndefined(parsecode)) parsecode = true;
-	if(parsecode) str= str.replace(/\s*\[code\]([\s\S]+?)\[\/code\]\s*/ig, function($1, $2) {return codetag($2);});
+	if(parsecode) str= str.replace(/\[code\]([\s\S]+?)\[\/code\]/ig, function($1, $2) {return codetag($2, -1);});
+	str = str.replace(/([^>=\]"'\/]|^)((((https?|ftp):\/\/)|www\.)([\w\-]+\.)*[\w\-\u4e00-\u9fa5]+\.([\.a-zA-Z0-9]+|\u4E2D\u56FD|\u7F51\u7EDC|\u516C\u53F8)((\?|\/|:)+[\w\.\/=\?%\-&~`@':+!]*)+\.(swf|flv))/ig, '$1[flash]$2[/flash]');
+	str = str.replace(/([^>=\]"'\/]|^)((((https?|ftp):\/\/)|www\.)([\w\-]+\.)*[\w\-\u4e00-\u9fa5]+\.([\.a-zA-Z0-9]+|\u4E2D\u56FD|\u7F51\u7EDC|\u516C\u53F8)((\?|\/|:)+[\w\.\/=\?%\-&~`@':+!]*)+\.(mp3|wma))/ig, '$1[audio]$2[/audio]');
 	str = str.replace(/([^>=\]"'\/@]|^)((((https?|ftp|gopher|news|telnet|rtsp|mms|callto|bctp|ed2k|thunder|qqdl|synacast):\/\/))([\w\-]+\.)*[:\.@\-\w\u4e00-\u9fa5]+\.([\.a-zA-Z0-9]+|\u4E2D\u56FD|\u7F51\u7EDC|\u516C\u53F8)((\?|\/|:)+[\w\.\/=\?%\-&;~`@':+!#]*)*)/ig, mode == 'html' ? '$1<a href="$2" target="_blank">$2</a>' : '$1[url]$2[/url]');
 	str = str.replace(/([^\w>=\]"'\/@]|^)((www\.)([\w\-]+\.)*[:\.@\-\w\u4e00-\u9fa5]+\.([\.a-zA-Z0-9]+|\u4E2D\u56FD|\u7F51\u7EDC|\u516C\u53F8)((\?|\/|:)+[\w\.\/=\?%\-&;~`@':+!#]*)*)/ig, mode == 'html' ? '$1<a href="$2" target="_blank">$2</a>' : '$1[url]$2[/url]');
 	str = str.replace(/([^\w->=\]:"'\.\/]|^)(([\-\.\w]+@[\.\-\w]+(\.\w+)+))/ig, mode == 'html' ? '$1<a href="mailto:$2">$2</a>' : '$1[email]$2[/email]');
@@ -1738,39 +1800,45 @@ function parseurl(str, mode, parsecode) {
 	return str;
 }
 
-function codetag(text) {
+function codetag(text, br) {
+	var br = !br ? 1 : br;
 	DISCUZCODE['num']++;
-	if(typeof wysiwyg != 'undefined' && wysiwyg) text = text.replace(/<br[^\>]*>/ig, '\n').replace(/<(\/|)[A-Za-z].*?>/ig, '');
+	if(br > 0 && typeof wysiwyg != 'undefined' && wysiwyg) text = text.replace(/<br[^\>]*>/ig, '\n');
+	text = text.replace(/\$/ig, '$$');
 	DISCUZCODE['html'][DISCUZCODE['num']] = '[code]' + text + '[/code]';
 	return '[\tDISCUZ_CODE_' + DISCUZCODE['num'] + '\t]';
 }
 
 function saveUserdata(name, data) {
-	if(BROWSER.ie){
-		if(data.length < 54889) {
-			with(document.documentElement) {
-				setAttribute("value", data);
-				save('Discuz_' + name);
+	try {
+		if(window.localStorage){
+			localStorage.setItem('Discuz_' + name, data);
+		} else if(window.sessionStorage){
+			sessionStorage.setItem('Discuz_' + name, data);
+		}
+	} catch(e) {
+		if(BROWSER.ie){
+			if(data.length < 54889) {
+				with(document.documentElement) {
+					setAttribute("value", data);
+					save('Discuz_' + name);
+				}
 			}
 		}
-	} else if(window.localStorage){
-		localStorage.setItem('Discuz_' + name, data);
-	} else if(window.sessionStorage){
-		sessionStorage.setItem('Discuz_' + name, data);
 	}
 	setcookie('clearUserdata', '', -1);
 }
 
 function loadUserdata(name) {
-	if(BROWSER.ie){
+	if(window.localStorage){
+		return localStorage.getItem('Discuz_' + name);
+	} else if(window.sessionStorage){
+		return sessionStorage.getItem('Discuz_' + name);
+	} else if(BROWSER.ie){
 		with(document.documentElement) {
 			load('Discuz_' + name);
 			return getAttribute("value");
 		}
-	} else if(window.localStorage){
-		return localStorage.getItem('Discuz_' + name);
-	} else if(window.sessionStorage){
-		return sessionStorage.getItem('Discuz_' + name);
 	}
 }
 
@@ -1779,7 +1847,11 @@ function initTab(frameId, type) {
 }
 
 function openDiy(){
-	window.location.href = ((window.location.href + '').replace(/[\?\&]diy=yes/g, '').split('#')[0] + ( window.location.search && window.location.search.indexOf('?diy=yes') < 0 ? '&diy=yes' : '?diy=yes'));
+	if(DYNAMICURL) {
+		window.location.href = SITEURL+DYNAMICURL + (DYNAMICURL.indexOf('?') < 0 ? '?' : '&') + ('diy=yes');
+	} else {
+		window.location.href = ((window.location.href + '').replace(/[\?\&]diy=yes/g, '').split('#')[0] + ( window.location.search && window.location.search.indexOf('?diy=yes') < 0 ? '&diy=yes' : '?diy=yes'));
+	}
 }
 
 function hasClass(elem, className) {
@@ -1832,18 +1904,25 @@ function initSearchmenu(searchform, cloudSearchUrl) {
 	}
 	var tclass = searchtxt.className;
 	searchtxt.className = tclass + ' xg1';
-	searchtxt.onfocus = function () {
+	if (!!("placeholder" in document.createElement("input"))) {
 		if(searchtxt.value == '请输入搜索内容') {
 			searchtxt.value = '';
-			searchtxt.className = tclass;
 		}
-	};
-	searchtxt.onblur = function () {
-		if(searchtxt.value == '' ) {
-			searchtxt.value = '请输入搜索内容';
-			searchtxt.className = tclass + ' xg1';
-		}
-	};
+		searchtxt.placeholder = '请输入搜索内容';
+	} else {
+		searchtxt.onfocus = function () {
+			if(searchtxt.value == '请输入搜索内容') {
+				searchtxt.value = '';
+				searchtxt.className = tclass;
+			}
+		};
+		searchtxt.onblur = function () {
+			if(searchtxt.value == '' ) {
+				searchtxt.value = '请输入搜索内容';
+				searchtxt.className = tclass + ' xg1';
+			}
+		};
+	}
 	if(!$(searchform + '_type_menu')) return false;
 	var o = $(searchform + '_type');
 	var a = $(searchform + '_type_menu').getElementsByTagName('a');
@@ -1856,15 +1935,11 @@ function initSearchmenu(searchform, cloudSearchUrl) {
 			if((a[i].rel == 'forum' || a[i].rel == 'curforum') && defaultUrl != cloudSearchUrl) {
 				formobj.action = cloudSearchUrl;
 				formobj.method = 'get';
+				if($('srchFId')) {
+					$('srchFId').value = a[i].rel == 'forum' ? 0 : a[i].getAttribute('fid');
+				}
 			} else {
 				formobj.action = defaultUrl;
-			}
-
-			if($('cloudsearchforumId')) {
-				$('cloudsearchforumId').value = '0';
-				if (a[i].rel == 'curforum') {
-					$('cloudsearchforumId').value = $('dzsearchforumid').value
-				}
 			}
 		}
 		a[i].onclick = function(){
@@ -1874,15 +1949,11 @@ function initSearchmenu(searchform, cloudSearchUrl) {
 			if((this.rel == 'forum' || this.rel == 'curforum') && defaultUrl != cloudSearchUrl) {
 				formobj.action = cloudSearchUrl;
 				formobj.method = 'get';
+				if($('srchFId')) {
+					$('srchFId').value = this.rel == 'forum' ? 0 : this.getAttribute('fid');
+				}
 			} else {
 				formobj.action = defaultUrl;
-			}
-
-			if($('cloudsearchforumId')) {
-				$('cloudsearchforumId').value = '0';
-				if (this.rel == 'curforum') {
-					$('cloudsearchforumId').value = $('dzsearchforumid').value
-				}
 			}
 		};
 	}
@@ -1910,7 +1981,7 @@ function updatesecqaa(idhash) {
 	$F('_updatesecqaa', arguments);
 }
 
-function updateseccode(idhash, play) {
+function updateseccode(idhash) {
 	$F('_updateseccode', arguments);
 }
 
@@ -1922,6 +1993,14 @@ function createPalette(colorid, id, func) {
 	$F('_createPalette', arguments);
 }
 
+function showForummenu(fid) {
+	$F('_showForummenu', arguments);
+}
+
+function showUserApp() {
+	$F('_showUserApp', arguments);
+}
+
 function cardInit() {
 	var cardShow = function (obj) {
 		if(BROWSER.ie && BROWSER.ie < 7 && obj.href.indexOf('username') != -1) {
@@ -1930,10 +2009,15 @@ function cardInit() {
 		pos = obj.getAttribute('c') == '1' ? '43' : obj.getAttribute('c');
 		USERCARDST = setTimeout(function() {ajaxmenu(obj, 500, 1, 2, pos, null, 'p_pop card');}, 250);
 	};
+	var cardids = {};
 	var a = document.body.getElementsByTagName('a');
 	for(var i = 0;i < a.length;i++){
 		if(a[i].getAttribute('c')) {
-			a[i].setAttribute('mid', hash(a[i].href));
+			var href = a[i].getAttribute('href', 1);
+			if(typeof cardids[href] == 'undefined') {
+				cardids[href] = Math.round(Math.random()*10000);
+			}
+			a[i].setAttribute('mid', 'card_' + cardids[href]);
 			a[i].onmouseover = function() {cardShow(this)};
 			a[i].onmouseout = function() {clearTimeout(USERCARDST);};
 		}
@@ -1969,12 +2053,30 @@ function strLenCalc(obj, checklen, maxlen) {
 	if(curlen >= len) {
 		$(checklen).innerHTML = curlen - len;
 	} else {
-		obj.value = mb_cutstr(v, maxlen, true);
+		obj.value = mb_cutstr(v, maxlen, 0);
+	}
+}
+
+function patchNotice() {
+	if($('patch_notice')) {
+		ajaxget('misc.php?mod=patch&action=patchnotice', 'patch_notice', '');
+	}
+}
+
+function pluginNotice() {
+	if($('plugin_notice')) {
+		ajaxget('misc.php?mod=patch&action=pluginnotice', 'plugin_notice', '');
+	}
+}
+
+function ipNotice() {
+	if($('ip_notice')) {
+		ajaxget('misc.php?mod=patch&action=ipnotice&_r='+Math.random(), 'ip_notice', '');
 	}
 }
 
 function noticeTitle() {
-	NOTICETITLE = {'State':0, 'oldTitle':document.title, flashNumber:0, sleep:15};
+	NOTICETITLE = {'State':0, 'oldTitle':NOTICECURTITLE, flashNumber:0, sleep:15};
 	if(!getcookie('noticeTitle')) {
 		window.setInterval('noticeTitleFlash();', 500);
 	} else {
@@ -2000,27 +2102,29 @@ function con_handle_response(response) {
 }
 
 function showTopLink() {
-	if($('ft')){
+	var ft = $('ft');
+	if(ft){
+		var scrolltop = $('scrolltop');
 		var viewPortHeight = parseInt(document.documentElement.clientHeight);
 		var scrollHeight = parseInt(document.body.getBoundingClientRect().top);
-		var basew = parseInt($('ft').clientWidth);
-		var sw = $('scrolltop').clientWidth;
+		var basew = parseInt(ft.clientWidth);
+		var sw = scrolltop.clientWidth;
 		if (basew < 1000) {
-			var left = parseInt(fetchOffset($('ft'))['left']);
+			var left = parseInt(fetchOffset(ft)['left']);
 			left = left < sw ? left * 2 - sw : left;
-			$('scrolltop').style.left = ( basew + left ) + 'px';
+			scrolltop.style.left = ( basew + left ) + 'px';
 		} else {
-			$('scrolltop').style.left = 'auto';
-			$('scrolltop').style.right = 0;
+			scrolltop.style.left = 'auto';
+			scrolltop.style.right = 0;
 		}
 
 		if (BROWSER.ie && BROWSER.ie < 7) {
-			$('scrolltop').style.top = viewPortHeight - scrollHeight - 150 + 'px';
+			scrolltop.style.top = viewPortHeight - scrollHeight - 150 + 'px';
 		}
 		if (scrollHeight < -100) {
-			$('scrolltop').style.visibility = 'visible';
+			scrolltop.style.visibility = 'visible';
 		} else {
-			$('scrolltop').style.visibility = 'hidden';
+			scrolltop.style.visibility = 'hidden';
 		}
 	}
 }
@@ -2030,7 +2134,7 @@ function showCreditmenu() {
 }
 
 function showUpgradeinfo() {
-	showMenu({'ctrlid':'g_upmine', 'pos':'21'});
+	$F('_showUpgradeinfo', []);
 }
 
 function addFavorite(url, title) {
@@ -2055,8 +2159,99 @@ function setHomepage(sURL) {
 	}
 }
 
+function setShortcut() {
+	var scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+	if(!loadUserdata('setshortcut') && !scrollTop) {
+		$F('_setShortcut', []);
+	}
+}
+
 function smilies_show(id, smcols, seditorkey) {
 	$F('_smilies_show', arguments, 'smilies');
+}
+
+function showfocus(ftype, autoshow) {
+	var id = parseInt($('focuscur').innerHTML);
+	if(ftype == 'prev') {
+		id = (id-1) < 1 ? focusnum : (id-1);
+		if(!autoshow) {
+			window.clearInterval(focusautoshow);
+		}
+	} else if(ftype == 'next') {
+		id = (id+1) > focusnum ? 1 : (id+1);
+		if(!autoshow) {
+			window.clearInterval(focusautoshow);
+		}
+	}
+	$('focuscur').innerHTML = id;
+	$('focus_con').innerHTML = $('focus_'+(id-1)).innerHTML;
+}
+
+function rateStarHover(target,level) {
+	if(level ==  0) {
+		$(target).style.width = '';
+	} else {
+		$(target).style.width = level * 16 + 'px';
+	}
+}
+function rateStarSet(target,level,input) {
+	$(input).value = level;
+	$(target).className = 'star star' + level;
+}
+
+function img_onmouseoverfunc(obj) {
+	if(typeof showsetcover == 'function') {
+		showsetcover(obj);
+	}
+	return;
+}
+
+function toggleBlind(dom) {
+	if(dom) {
+		if(loadUserdata('is_blindman')) {
+			saveUserdata('is_blindman', '');
+			dom.title = '开启辅助访问';
+		} else {
+			saveUserdata('is_blindman', '1');
+			dom.title = '关闭辅助访问';
+		}
+	}
+}
+
+function checkBlind() {
+	var dom = $('switchblind');
+	if(dom) {
+		if(loadUserdata('is_blindman')) {
+			dom.title = '关闭辅助访问';
+		} else {
+			dom.title = '开启辅助访问';
+		}
+	}
+}
+function getElementOffset(element)
+{
+	var left = element.offsetLeft, top = element.offsetTop;
+	while(element = element.offsetParent) {
+		left += element.offsetLeft;
+		top += element.offsetTop;
+	}
+	if($('nv').style.position == 'fixed') {
+		top -= parseInt($('nv').style.height);
+	}
+	return {'left' : left, 'top' : top};
+}
+
+function mobileplayer()
+{
+	var platform = navigator.platform;
+	var ua = navigator.userAgent;
+	var ios = /iPhone|iPad|iPod/.test(platform) && ua.indexOf( "AppleWebKit" ) > -1;
+	var andriod = ua.indexOf( "Android" ) > -1;
+	if(ios || andriod) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 if(typeof IN_ADMINCP == 'undefined') {
@@ -2071,80 +2266,3 @@ if(typeof IN_ADMINCP == 'undefined') {
 if(BROWSER.ie) {
 	document.documentElement.addBehavior("#default#userdata");
 }
-
-function mingxingtang_computeComplex(password, username) {
-	var complex = 0;
-	password = mingxingtang_transfer(password, username);
-	
-	var length = password.length;
-
-	var pre = '';
-	var preType = 0;
-	for (var i = 0; i < length; i++) {
-		var cur = password.charAt(i);
-		var curType = mingxingtang_gettype(password, i);
-
-		if (preType != curType || !mingxingtang_isregular(cur, pre, curType)) {
-			complex += curType + mingxingtang_getcomplex(curType, preType);
-		}
-
-		pre = cur;
-		preType = curType;
-	}
-
-	return complex;
-}
-
-function mingxingtang_transfer(password, username){
-	var pos = password.indexOf(username);
-	if(pos != -1){
-		return password.substr(0, pos) + password.substr(pos, 1) + password.substr(pos + username.length);
-	}
-	
-	pos = username.indexOf(password);
-	if(pos != -1){
-		return username.substr(0, pos) + username.substr(pos, 1) + username.substr(pos + password.length);
-	}
-	
-	return password;
-}
-
-function mingxingtang_gettype(str, i) {
-	if (str.charCodeAt(i) >= 48 && str.charCodeAt(i) <= 57) {
-		return 1;
-	}
-	else if(str.charCodeAt(i) >= 97 && str.charCodeAt(i) <= 122) {
-		return 2;
-	}
-	else if(str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90) {
-		return 3;
-	}
-
-	return 4;
-}
-
-function mingxingtang_isregular(cur, pre, type) {
-	var curCode = cur.charCodeAt(0);
-	var preCode = pre.charCodeAt(0);
-	
-	if(curCode - preCode == 0){
-		return true;
-	}
-	
-	if(type != 4 && (curCode - preCode == 1 || curCode - preCode == -1)){
-		return true;
-	}
-	
-	return false;
-}
-
-function mingxingtang_getcomplex(curType, preType){
-	if(preType == 0 || curType == preType){
-		return 0;
-	}else if(curType == 4 || preType == 4){
-		return 2;
-	}else{
-		return 1;
-	}
-}
-

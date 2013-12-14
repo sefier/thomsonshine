@@ -4,7 +4,7 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
  *      This is NOT a freeware, use is subject to license terms
  *
- *      $Id: userapp_app.php 22039 2011-04-20 08:37:29Z zhengqingpeng $
+ *      $Id: userapp_app.php 34091 2013-10-09 04:04:17Z andyzheng $
  */
 
 if(!defined('IN_DISCUZ')) {
@@ -19,8 +19,7 @@ if($appid == '1036584') {
 }
 
 $app = array();
-$query = DB::query("SELECT * FROM ".DB::table('common_myapp')." WHERE appid='$appid' LIMIT 1");
-if($app = DB::fetch($query)) {
+if($app = C::t('common_myapp')->fetch($appid)) {
 	if($app['flag']<0) {
 		showmessage('no_privilege_myapp');
 	}
@@ -40,7 +39,7 @@ if($app['displayuserpanel']) {
 }
 
 $my_appId = $appid;
-$my_suffix = base64_decode(urldecode($_GET['my_suffix']));
+$my_suffix = htmlspecialchars(base64_decode($_GET['my_suffix']));
 
 $my_prefix = getsiteurl();
 
@@ -79,6 +78,8 @@ $url .= '&my_fullscreen='.$isFullscreen;
 $hash = $_G['setting']['my_siteid'].'|'.$_G['uid'].'|'.$appid.'|'.$current_url.'|'.$extra.'|'.$_G['timestamp'].'|'.$_G['setting']['my_sitekey'];
 $hash = md5($hash);
 $url .= '&my_sig='.$hash;
+$my_sign = md5($_G['setting']['my_siteid'].'|'.$_G['uid'].'|'.$_G['setting']['my_sitekey'].'|'.$_G['timestamp']);
+$url .= '&timestamp='. $_G['timestamp'] .'&my_sign='.$my_sign;
 $my_suffix = urlencode($my_suffix);
 
 $canvasTitle = '';
@@ -93,6 +94,22 @@ if ($app['fullscreen']) {
 if ($app['displayuserpanel']) {
 	$displayUserPanel = $app['displayuserpanel'];
 }
+
+if($_G['uid'] && $appid && $appid != '1036584') {
+	$usedArr = array();
+	$usedInfo = explode('|', $_G['cookie']['usedapp']);
+	if($usedInfo[0] == $_G['uid']) {
+		$usedArr = !empty($usedInfo[1]) ? explode(',', $usedInfo[1]) : array();
+		if(!in_array($appid, $usedArr)) {
+			if(count($usedArr) >= 5) {
+				unset($usedArr[0]);
+			}
+			$usedArr[] = $appid;
+		}
+	}
+	dsetcookie('usedapp', $_G['uid'].'|'.implode(',', $usedArr), 31536000);
+}
+
 
 $navtitle = $app['appname'].' - '.$navtitle;
 

@@ -1,5 +1,5 @@
 <div class="mtn editor_box">
-  <form method="post" autocomplete="off" id="fastpostform" action="forum.php?mod=post&action=reply&fid=$_G[fid]&tid=$_G[tid]&extra=$_G[gp_extra]&replysubmit=yes&mobile=yes">
+  <form method="post" autocomplete="off" id="fastpostform" action="forum.php?mod=post&action=reply&fid=$_G[fid]&tid=$_G[tid]&extra=$_GET[extra]&replysubmit=yes&mobile=yes">
    	  <input type="hidden" name="formhash" value="{FORMHASH}" />
       <!--{if $_G[forum_thread][special] == 5 && empty($firststand)}-->
         <div class="inbox">
@@ -12,7 +12,7 @@
       </div>
       <!--{/if}-->
       <div class="inbox"><textarea name="message" id="fastpostmessage" cols="25" rows="3" class="txt"></textarea></div>
-      <!--{if checkperm('seccode') && ($secqaacheck || $seccodecheck)}-->
+      <!--{if $secqaacheck || $seccodecheck}-->
       <div class="inbox"><!--{subtemplate common/seccheck}--></div>
       <!--{/if}-->
       <div class="inbox"><input type="submit" name="replysubmit" id="fastpostsubmit" value="{lang reply}" /></div>

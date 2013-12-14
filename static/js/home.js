@@ -1,8 +1,8 @@
 /*
-	[Discuz!] (C)2001-2009 Comsenz Inc.
+	[Discuz!] (C)2001-2099 Comsenz Inc.
 	This is NOT a freeware, use is subject to license terms
 
-	$Id: home.js 22765 2011-05-20 03:06:12Z zhengqingpeng $
+	$Id: home.js 34052 2013-09-25 06:18:43Z andyzheng $
 */
 
 var note_step = 0;
@@ -153,7 +153,7 @@ function copyRow(tbody) {
 		add = true;
 	}
 	tags = newnode.getElementsByTagName('input');
-	for(i in tags) {
+	for(i = 0;i < tags.length;i++) {
 		if(tags[i].name == 'pics[]') {
 			tags[i].value = 'http://';
 		}
@@ -167,7 +167,7 @@ function delRow(obj, tbody) {
 	if($(tbody).rows.length == 1) {
 		var trobj = obj.parentNode.parentNode;
 		tags = trobj.getElementsByTagName('input');
-		for(i in tags) {
+		for(i = 0;i < tags.length;i++) {
 			if(tags[i].name == 'pics[]') {
 				tags[i].value = 'http://';
 			}
@@ -262,14 +262,16 @@ function showFlash(host, flashvar, obj, shareid) {
 	    + '<param name="movie" value="FLASHADDR" />'
 	    + '<param name="quality" value="high" />'
 	    + '<param name="bgcolor" value="#FFFFFF" />'
-	    + '<param name="allowScriptAccess" value="none" />'
+	    + '<param name="allowScriptAccess" value="never" />'
 	    + '<param name="allowNetworking" value="internal" />'
-	    + '<embed width="480" height="400" menu="false" quality="high" src="FLASHADDR" type="application/x-shockwave-flash" />'
+	    + '<embed width="480" height="400" menu="false" quality="high" allowScriptAccess="never" allowNetworking="internal" src="FLASHADDR" type="application/x-shockwave-flash" />'
 	    + '</object>';
 	var videoFlash = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="480" height="450">'
 		+ '<param value="transparent" name="wmode"/>'
 		+ '<param value="FLASHADDR" name="movie" />'
-		+ '<embed src="FLASHADDR" wmode="transparent" allowfullscreen="true" type="application/x-shockwave-flash" width="480" height="450"></embed>'
+		+ '<param name="allowScriptAccess" value="never" />'
+		+ '<param name="allowNetworking" value="none" />'
+		+ '<embed src="FLASHADDR" wmode="transparent" allowfullscreen="true" type="application/x-shockwave-flash" width="480" height="450" allowScriptAccess="never" allowNetworking="internal"></embed>'
 		+ '</object>';
 	var musicFlash = '<object id="audioplayer_SHAREID" height="24" width="290" data="' + STATICURL + 'image/common/player.swf" type="application/x-shockwave-flash">'
 		+ '<param value="' + STATICURL + 'image/common/player.swf" name="movie"/>'
@@ -598,6 +600,7 @@ function wall_add(id) {
 function share_add(sid) {
 	var obj = $('share_ul');
 	var newli = document.createElement("li");
+	newli.id = 'share_' + sid + '_li';
 	var x = new Ajax();
 	x.get('home.php?mod=misc&ac=ajax&op=share&inajax=1&sid='+sid, function(s){
 		newli.innerHTML = s;
@@ -641,6 +644,10 @@ function comment_edit(cid) {
 	var x = new Ajax();
 	x.get('home.php?mod=misc&ac=ajax&op=comment&inajax=1&cid='+ cid, function(s){
 		obj.innerHTML = s;
+		var elems = selector('dd[class~=magicflicker]');
+		for(var i=0; i<elems.length; i++){
+			magicColor(elems[i]);
+		}
 	});
 }
 function comment_delete(cid) {
@@ -694,7 +701,7 @@ function post_add(pid, result) {
 			$('message').value= '';
 			newnode = $('quickpostimg').rows[0].cloneNode(true);
 			tags = newnode.getElementsByTagName('input');
-			for(i in tags) {
+			for(i = 0;i < tags.length;i++) {
 				if(tags[i].name == 'pics[]') {
 					tags[i].value = 'http://';
 				}
@@ -768,13 +775,6 @@ function mtag_join(tagid, result) {
 	}
 }
 
-function picView(albumid) {
-	if(albumid == 'none') {
-		$('albumpic_body').innerHTML = '';
-	} else {
-		ajaxget('home.php?mod=misc&ac=ajax&op=album&id='+albumid+'&ajaxdiv=albumpic_body', 'albumpic_body');
-	}
-}
 function resend_mail(mid) {
 	if(mid) {
 		var obj = $('sendmail_'+ mid +'_li');
@@ -1158,4 +1158,14 @@ function checkSynSignature() {
 		$('syn_signature').className = 'syn_signature_check';
 		$('to_signhtml').value = '1';
 	}
+}
+
+function searchpostbyusername(keyword, srchuname) {
+	window.location.href = 'search.php?mod=forum&srchtxt=' + keyword + '&srchuname=' + srchuname + '&searchsubmit=yes';
+}
+
+function removeVisitor(event, uid) {
+	window.location = 'home.php?mod=space&uid='+uid+'&do=index&view=admin&additional=removevlog';
+	event.preventDefault();
+	event.stopPropagation();
 }
