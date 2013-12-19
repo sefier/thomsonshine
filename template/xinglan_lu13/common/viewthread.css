@@ -1,0 +1,80 @@
+/* CSS Document */
+
+
+
+
+.block{margin:0px;}
+body{font-family:"ËÎÌו";}
+a{color:#484747;}
+.ggw{margin-top:10px !important; border:0px !important;}
+
+#pgt{ border:#C2C0C0 1px solid; border-bottom:0px  !important; padding:5px; margin-bottom:0 !important;background:#fff;}
+#modmenu{ border:#C2C0C0 1px solid;line-height: 35px;padding:5px; padding-bottom:0px !important;background:#fff; }
+#postlist{ margin-top:0px; border-radius: 0px;border-top:0px;}
+
+#postlist .vk_pl_block_title{background:url(../image/titlebg3.png) repeat-x !important;border-bottom:#C2C0C0 1px solid;height: 35px;line-height: 35px;}
+#postlist .vk_pl_block_title .plc ,.vk_pl_block_title .pls{background-color:rgba(255, 255, 255, 0);background:url(../image/titlebg1.jpg) repeat-x !important;border-radius: 0px;}
+#postlist  .bui, .bui .m img {border-radius:0px;border:#fff 4px solid;}
+#postlist .pls .avatar img{border-radius:0px;border:#fff 4px solid;margin-left:20px;}
+
+.pls p, .pls .pil{margin: 5px 10px 5px 20px;}
+.cp_pls{text-align:inherit;}
+#postlist .pls ,#f_pst .pls{width: 170px;background: #fff ;}
+#postlist .plc{background:#fff;border-left:1px solid #C9C9C9;}
+
+.ad .pls{background:#EDF5F8 !important;}
+.ad .plc{background:#EDF5F8 !important;border-radius: 0px !important; padding:1px 0;}
+
+#postlist .po {visibility:visible; }
+.pls .pi{border-bottom: 1px dashed #C9C9C9; height:31px;}
+.plc .pi{border-bottom: 1px dashed #C9C9C9;}
+.plc{border-radius: 0px !important;}
+
+#f_pst .pls .avatar img{border-radius:0px;border:#fff 4px solid;  margin-left:20px;margin-top:10px;}
+#f_pst .plc{background:#fff;border-left:1px solid #C9C9C9;}
+#f_pst .pn {border-radius:0px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

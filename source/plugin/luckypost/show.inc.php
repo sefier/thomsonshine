@@ -5,4 +5,3 @@ if(!defined('IN_DISCUZ')) {
 
 require_once 'luckypost.inc.php';
 
-?>

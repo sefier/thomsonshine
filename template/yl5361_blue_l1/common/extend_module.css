@@ -1,0 +1,30 @@
+/** forum **/
+.bdl,.bdl dt,.bdl dd.bdl_a a{border-color:{WRAPBORDERCOLOR};background-color:{COMMONBG};}.bdl dt{background-image:url({IMGDIR}/titlebg_sd.png);}.bdl dd.bdl_a a{color:{HIGHLIGHTLINK};}
+.pnc, a.pnc { border-color: #215DAA; background-color: #215DAA;}
+.fl .bm .bm_h h2 a{ float:left; padding-right:28px; height:40px;}
+/** end **/
+/** forum::index **/
+.bm_h {height: 40px; border: none; background:#EFF0E2 url({IMGDIR}/yl5361_bm_h.jpg) repeat-x 0 100%;; line-height: 36px;}
+/** end **/
+/** forum::forumdisplay **/
+.fl .bm_h h2 {color:#0E54AC; font-size:14px; background: url({IMGDIR}/yl5361_fl_bm.gif) no-repeat 0 0; width:150px;}
+/** end **/
+/** group **/
+.fl .bm_h {border:solid {WRAPBORDERCOLOR}; border-width: 1px 1px 1px 1px; padding-left: 15px; background:{SPECIALBG};}
+.bm { background: #F7FBFE;}
+.bmw .bm_h, .bmw .bm_h a { color: #444;}
+/** end **/
+/** forum::index **/
+.yl5361_t1{ background:url({IMGDIR}/yl5361_t1_m.gif) repeat-x 0 0;}
+.yl5361_t1 .title{ height:42px; background:url({IMGDIR}/yl5361_t1_l.gif) no-repeat 0 0;}
+.yl5361_t1 .tb{ height:42px; background:url({IMGDIR}/yl5361_t1_r.gif) no-repeat 100% 0; padding: 7px 0 0 7px;}
+.yl5361_t1 .tb li{ border:0px; }
+.yl5361_t1 .tb li a{ border:0px;float:left; padding:0 14px; height:28px;line-height:29px;}
+.yl5361_t1 .tb li.a{ float:left; background:url({IMGDIR}/yl5361_t1_li.gif) no-repeat 0 0; }
+.yl5361_t1 .tb li.a a{ color:#fff; background:url({IMGDIR}/yl5361_t1_li.gif) no-repeat 100% -28px;}
+.yl5361_t1 .tb-c{ border-radius: 0 0 4px 4px; border:1px solid #ddd; border-top:0px; background:#fff url({IMGDIR}/yl5361_title_bg.png) repeat-x 0 100%; padding:7px 10px 7px 10px; height: 232px;}
+/** end **/
+/** home **/
+.flw_replybox .pnc {width: 85px;}
+.flw_replybox {background: #FFF;}
+/** end **/

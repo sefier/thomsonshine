@@ -1,0 +1,66 @@
+/* CSS Document */
+.block{margin:0px;}
+body{font-family:"ËÎÌå";}
+.frame{margin-bottom:0px;}
+.frame-tab{margin-bottom:0px; border:0px;}
+
+.ca{ border-color:#C9C9C9; border-radius:6px; background:#E5E5E5 }
+.ca .frame-1-1-l{width:480px;_width:475px;  margin:10px 0 0 10px;}
+.ca .frame-1-1-r{width:480px; height:340px; border-radius:0 6px 6px 0;background:#fff url(../image/jrrdbg.jpg) no-repeat;}
+.ca .slideshow span.title { font-family:"Î¢ÈíÑÅºÚ"; position: absolute;  bottom: 0; left: 0; margin-bottom: 0; width:475px; height:80px;line-height:40px; font-size: 22px; text-indent: 10px; font-weight:normal  }
+.ca .hdp .slidebar{position:relative; float:right; bottom:30px; right: 10px;}
+.ca .hdp .slidebar span{ text-align:center; color:#898890; font-weight:600;float:left;display: inline-block;width: 18px;height: 18px;cursor: pointer;background:#fff;margin-right:5px;}
+.ca .hdp .slidebar span.on{background:#525542;width: 18px;height: 18px;}
+.ca .hdp {height:320px;}
+
+.lttwzy{ border-bottom:1px solid #C9C9C9 }
+.lttwzy .dxb_bc{  margin:5px 25px 0;}
+.lttwzy .xld dt{text-align:center; height:25px; overflow:hidden; padding:2px 0 5px;}
+.lttwzy .xld dt a{font-family:"Î¢ÈíÑÅºÚ"; font-size:22px; color:#373366; font-weight: 600;}
+.lttwzy .xld dd{color:#4A4A4A; font-family:"ËÎÌå"; font-size:14px; line-height:25px;}
+
+#ck{ color:#FF3F00;}
+
+.lttzlb{}
+.lttzlb .dxb_bc{  margin:5px 25px;}
+.lttzlb li{background:none !important; padding-left:0 !important; height:24px; line-height:24spx;}
+.lttzlb li a{ color:#336699; font-size:14px}
+.lttzlb li em a{ color:#9999AA; }
+.lttzlb #bkmc{ margin-right:5px; color:#333;}
+
+
+
+
+
+
+#pt{margin:5px 0;}
+.fl{background: rgba(255, 255, 255, 0);}
+.fl .bm{ border:1px solid #C9C9C9 !important;}
+.fl .bm_h{background:url(../image/titlebg3.jpg) no-repeat; height:48px; line-height:48px;box-shadow: 0 0px 0 #EBF1FC;border-bottom:0;padding-left: 40px; font-weight:600}
+.bm_h .o img{margin-top:23px;}
+
+.fl .bm_h a{font-size:22px; color:#00A4D8}
+.fl_g dl dt{font-family:"Î¢ÈíÑÅºÚ"; font-size:16px; font-weight:600; letter-spacing:1px; margin-bottom:0px;}
+.fl_g dd em{width:auto; color:#A9A8B0}
+.fl_g  p{ color:#A9A8B0; font-size:12px; padding-right:25px;}
+.fl_g .xg1{ color:#A9A8B0; font-size:12px; padding-right:25px;}
+.bm_c td h2{font-family:"Î¢ÈíÑÅºÚ"; font-size:16px; font-weight:600; letter-spacing:1px; }
+.fl_i{font-size: 15px;}
+#category_61 tr{border-bottom:1px #DEDADB solid;}
+
+#online  .bm_h{background:url(../image/titlebg5.jpg) repeat-x; height:48px; line-height:65px;box-shadow: 0 0px 0 #EBF1FC;border-bottom:0;padding-left: 40px; font-weight:600}
+#online h3,#online strong a{font-size:15px; font-family:"Î¢ÈíÑÅºÚ"; color:#fff; font-weight:500}
+
+.yqlj{margin-top:10px; border:1px solid #C9C9C9 !important;border-radius:6px;}
+.yqlj .title{height:48px; line-height:48px; background:url(../image/titlebg3.jpg) no-repeat;border-radius:6px 6px 0 0; padding:0 30px;}
+.yqlj .titletext{ color:#00a4d8; font-size:26px; font-family:"Î¢ÈíÑÅºÚ";font-weight: 500;}
+.yqlj .subtitle{ color:#00a4d8; font-size:18px; font-family:"Î¢ÈíÑÅºÚ"; font-weight:500; line-height:55px;}
+.yqlj ul li {clear: none;float:left;padding: 10px 0 0px 20px;}
+.yqlj ul li a{font-size:13px;}
+
+
+
+
+
+
+

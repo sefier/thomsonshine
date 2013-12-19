@@ -1,0 +1,241 @@
+@charset "gb2312";
+/* ----------------------------------
+
+Something New For Discuz! (C) Comsenz Inc.
+http://www.comsenz.com
+
+----------------------------------
+
+/* 通用区域 by Pony 1203280948 */
+#pt {margin: 0 0 6px 0;font-family:"宋体"; }
+#pt .nvhm { margin-top:6px;background: url({STYLEIMGDIR}/shouye.png) no-repeat center 0;}
+#pt .z em{ background:url({STYLEIMGDIR}/jian_tou.png) no-repeat center center;}
+.bm, .ntc_l, .pn { border-radius: 0px; }
+.bm_h { background: #F8F8F8; /*border-bottom: {COMMONBORDER}; border-radius: 6px 6px 0 0;*/ }
+.bml .bm_h{ padding:10px 10px;border:1px solid {COMMONBORDER};}
+.pg a, .pg strong, .pgb a, .pg label {}
+a:hover{ color:#F00;}
+body{ background:#d0ece1;}
+
+
+/*--------------------TOPTB--------------------*/
+/*顶部导航*/
+#toptb { height:36px;background:url({STYLEIMGDIR}/toptb/toptb_bg.png); border-bottom: none;}
+#toptb  .z a{ line-height:36px; }
+#toptb  .y{ margin-top:5px;}
+/* 两栏布局 by Pony 1203281049 */
+.ct2_a { margin-bottom: 10px; border-radius: 5px; }
+.tbn ul { margin: -1px 1px 0 0; border-top: 1px solid #EAE8E8; border-bottom: 1px solid #FFF; }
+.tbn li { margin: 0; padding: 0; border-top: 1px solid #FFF; border-bottom: 1px solid #EAE8E8; }
+	.tbn li a { padding: 0 9px 0 10px; }
+	.tbn li.a { margin: -1px -1px 0 0; padding: 0; background: #F0F0F0 url({STYLEIMGDIR}/bg_tbn_a.png) no-repeat 100% 50%; }
+
+/* 日志、相册等地方用到的布局 by Pony 1203231002 */
+.ct2_sp .mn { width: 660px; }
+	.ct2_sp .mn .bml .bm_c, .ct_sp .mn .bml .bm_c { padding: 10px 20px 20px; }
+	.ct2_sp .bm_c .mn { display: inline; margin-left: 10px; width: 620px; }
+		.ct2_sp .bm_c .mn .bml .bm_c { padding: 0; }
+		.ct_sp .bm_c .mn .bml .bm_c { padding: 0 10px 10px; }
+.ct2_sp .sd { width: 290px; }
+	.ct2_sp .sd .bml { background: #F8F8F8; }
+
+.ct2_sp .tb, .ct_sp .tb { margin-top: 0; border-bottom: none; }
+.ct2_sp .tbmu, .ct_sp .tbmu { padding: 8px 0; }
+.ct2_sp .emp, .ct_sp .emp { padding: 20px 0; }
+
+.ct2_sp .block { border-radius: 5px; }
+.ct2_sp .title { border-radius: 5px 5px 0 0; }
+
+.mld dl { margin-bottom: 20px; }
+	.mld dt { font-weight: 400; }
+	.mld dd .c { overflow: hidden; }
+
+/* 标签样式 by Pony 1204111436 */
+.ie6 .tb, .ie7 .tb { height: 35px; }
+.tb li { margin: 0 3px 3px 0; }
+.tb a { padding: 0 9px; background: url({STYLEIMGDIR}/bg_tb.png) repeat-x 0 50%; font-size: 14px; border-radius: 5px;  border-color: {COMMONBORDER};}
+
+.tb .a, .tb .a a, .tb .current, .tb .current a { margin-bottom: -4px; padding-bottom: 4px; color: {HIGHLIGHTLINK}; border-radius: 5px 5px 0 0; }
+.tb_w { padding-left: 20px; }
+	.tb_w a { padding-left: 30px; padding-right: 30px; }
+	.tb_w .y a { padding-left: 5px; padding-right: 0; }
+	.ie6 .tb_w .a { position: relative !important; }
+.tb .o { float: right; }
+.tb .o, .tb .o a { margin-right: 0; height: 26px; line-height: 24px; border-radius: 5px; }
+	.tb .o:active, .tb .o a:active { background-position: 0 -60px; }
+/* 类似淘帖等地方的标签 by Pony 1203271317 */
+.tb_h li { margin: 3px 3px 3px 0; }
+.tb_h .a { margin-top: 0; }
+	.tb_h .a a { padding-top: 3px; }
+.tb_h .o { margin: 4px 5px 0; }
+
+/* 顶部导航 by Pony 1204131018 */
+#um .diynav { text-align: right; }
+#diy-tg { float: none; display: inline-block; margin-bottom: -4px; height: 19px; }
+	.ie9 #diy-tg { height: 20px; }
+#diy-tg_menu { margin-left: -18px; }
+	#diy-tg_menu li { line-height: 2; }
+	
+ /*用户登录*/
+ #hd .fastlg{ padding-top:20px;}
+
+/*用户登录后*/
+#um{  padding-top:23px;}
+
+  
+   
+/*改头部***************************************************************************/
+.bottom_pic{/* background: url({STYLEIMGDIR}/bottom_pic.jpg) no-repeat bottom center ;*/}
+#hd { margin: 0 auto;box-shadow:1px #99ccff; border:none;}
+#hd h2{padding-top:30px; padding-bottom:30px; }
+#hd .wp{ padding:0px;}
+.wp{ width:980px;}
+#um, #um a {}
+.hdc{margin: 0 auto;width: 980px}
+.w_hdc{ background:none; width:100%;}
+/* 导航 by Pony 1203311106 */
+/*#qmenu{ position:absolute; left:850px; bottom:15px;}
+#qmenu.a{ position:absolute;}*/
+
+
+#qmenu { margin-top: 14px; }
+    #w_nv{ width:100%;}
+    #nv { width:980px;margin:0 auto;/*position: relative; */height:46px;  background:url({STYLEIMGDIR}/nv.png) repeat-x;  }
+	#nv ul{;}
+	#nv li { /*background-image: url({STYLEIMGDIR}/nv_a.png) !important;*/ height:46px; line-height:46px;
+	 background:url({STYLEIMGDIR}/nv_li_r.png)  no-repeat right center; text-align:center;
+	/*border-image: url({STYLEIMGDIR}/nv_li_r.png) 0 2 0 0 stretch stretch;*/ }
+	
+	#nv li a{ font-weight:bold; font-family:"微软雅黑";font-size:16px;height:46px; font-weight: 400;line-height:46px; 
+	width:auto;color:#fff;}
+	#nv li a:hover{background: url({STYLEIMGDIR}/nv_a.png) repeat-x;text-decoration:none;color:#fff;}
+	#nv li.a { line-height:46px; height:46px;background:url({STYLEIMGDIR}/nv_li_r.png)  no-repeat right center;}
+	#nv li.a a{background: url({STYLEIMGDIR}/nv_a.png) repeat-x;color:#fff;/*box-shadow: 1px 1px 1px #EEE inset;*/}
+	#nv li.hover a:hover, #nv li.hover a { color:#fff; } 
+			
+
+/* 二级导航 by Pony 1203311106 */
+#mu ul { border: solid #E5EDF2; border-width: 0 1px 1px; background: #F4F9FC; border-radius: 0 0 5px 5px; }
+	#mu a:hover { margin: 5px 6px; border: none; background: transparent; text-decoration: underline; }
+
+/* 用户导航 by Pony 1203281436 */
+#um .p_pop a { line-height: 1.6; }
+#umnav { margin-right: 2px !important; padding-top: 3px; padding-bottom: 3px; padding-left: 5px; }
+	#umnav.a { position: relative; z-index: 302; margin-right: 1px !important; padding-left: 4px; border: 1px solid; border-color: {DROPMENUBORDER}; border-bottom: none; background-color: {WRAPBG}; }
+	#umnav_menu { margin-top: -1px; width: auto; }
+.nav_pop { padding: 0; min-width: 90px; }
+	.nav_pop li a { padding: 3px 10px; line-height: 2 !important; border-bottom: none; }
+	.nav_pop li a:hover { background: #1562AD; color: #FFF !important; }
+
+/* 快速登录 by Pony 1203231516 */
+.fastlg_l { border-right: none; }
+	.fastlg_l .pn, .fastlg_l .pn:active { width: 70px; }
+.reglink { float: left; padding: 0 10px; height: 21px; line-height: 21px; border: 1px solid #E6E6E6; background: #EEE; color: {TABLETEXT}; box-shadow: 1px 1px 1px #EEE inset; border-radius: 5px; }
+
+/* 搜索条 by Pony 1203201332 */
+.searchBox{ width:980px;  margin:8px auto 10px auto;background:#f4f3f3;padding:8px 0px;}
+#scbar {height:31px; margin:0 10px;
+ background: url({STYLEIMGDIR}/search.png) no-repeat 0px 0px;border-top:none;/*border: 1px solid {COMMONBORDER}; border-radius: 3px;*/ 
+ border-bottom:none;}
+ 
+	.scbar_icon_td { width: 10px; background: none; }	
+	.scbar_type_td { font-size: 12px; font-family:"宋体";line-height:31px;height:31px;width: 51px; background:none;/*background: url({STYLEIMGDIR}/search.png) no-repeat -328px 0px;*/}
+	.scbar_type_td a{ line-height:31px; color:#bab9b9;font-family:"宋体"}
+		#scbar_type { padding-left: 10px; background:none; /*background: url({STYLEIMGDIR}/search.png) no-repeat -20px -449px;*/ }
+		
+	.scbar_txt_td { background:none;/*background: url({STYLEIMGDIR}/search.png) repeat-x 0 -217px;*/ }
+	.scbar_type_td{ background:none;}
+	
+		#scbar_txt { width:205px;vertical-align:middle;/*background: url({STYLEIMGDIR}/search.png) no-repeat 0px 0px;*/
+		/*background:url({STYLEIMGDIR}/search_icon.png) no-repeat 0 right;*/ 
+		margin-left: 27px; font-size: 12px; font-family:"宋体";  text-align:left;}
+		.scbar_narrow #scbar_txt{ width:205px;}
+
+	 .scbar_btn_td .pn{ border-radius:0px;}
+	 .scbar_btn_td { width: 65px; height:31px; background: none;}
+	 .scbar_type_td a{ line-height:31px;}
+    #scbar_hot a{line-height:31px; color:#6c6c6c;}
+#scbar_hot .xw1{ font-weight:normal; font-family:"宋体";color:#6c6c6c;}
+   #scbar_hot{ padding-left:15px;height:31px; line-height:31px;font-family:"宋体";}
+		#scbar_btn { font-family:"宋体"; font-size:14px; text-align:center;
+		/*background: url({STYLEIMGDIR}/search.png) -366px 0px;*/ width: 65px; height:31px;
+		letter-spacing: 5px;color: #FFF; }
+		  .pn span
+		.ie7 #scbar_btn {/* padding-left: 25px;*/ }
+#scbar_type_menu { margin-top: -11px; }
+
+
+
+/* 通用的区域块 by Pony 1203311441 */
+.fl { border: none; }
+	.fl .bm { margin-bottom: 10px; /*border: 1px solid {COMMONBORDER};*/ }
+		
+		 #online .bm_c, .lk .bm_c { padding: 10px 20px; }
+	 
+	/* for hottopic plugin */
+	.bmb, .hottopic { margin-top: 10px; border: 1px solid {COMMONBORDER}; }
+	/* for tshare plugin */
+	.tshare { margin-top: 10px; }
+		.tshare img { margin: 0 2px -3px 0; }
+		.tshare a { margin-right: 5px; }
+
+/* 类似点评那里的表单 by Pony 1204111426 */
+.xldform .bar { padding-left: 5px; border-bottom: none; background: #FFF; }
+.xldform .arrow { position: absolute; margin: 27px 0 0 -5px; width: 6px; height: 9px; background: url({STYLEIMGDIR}/bg_arrow_left_cmt.png) no-repeat 0 0; }
+	.ie6 .xldform .arrow { margin-left: -2px; }
+.xldform .tedt { width: 99.5%; border-color: {COMMONBORDER}; }
+	.ie6 .xldform .tedt { width: 99%; }
+	.xldform .tedt .pt { height: 36px; }
+
+/* 大分页按钮 by Pony 1203121325 */
+.pgbtn { margin: 5px 0 10px; }
+	.pgbtn a { display: block; height: 40px; line-height: 40px; letter-spacing: 5px; text-align: center; border: 1px solid #DCDCDC; background: #F5F5F5 url({STYLEIMGDIR}/bg_pgbtn.png) repeat-x 0 0; font-size: 14px; outline: none; border-radius: 5px; box-shadow: 0 1px 0 #F5F5F5; }
+		.pgbtn a:hover { border-color: #BABABA; text-decoration: none; }
+		.pgbtn a:active { background: #EEE; border-color: #D0D0D0; box-shadow: none; }
+
+/* 论坛皮肤下用户页面头部 by Pony 1203271056 */
+.uhd { margin-bottom: 10px; padding: 20px 320px 20px 20px; border: 1px solid {COMMONBORDER}; background: #F8F8F8; zoom: 1; border-radius: 5px; box-shadow: 0 0 10px #FFF inset; }
+	.uhd .ctrl { display: inline; float: right; margin-right: -300px; width: 290px; }
+	.uhd .d { padding-left: 140px; }
+		.uhd .mt { padding-top: 0; }
+		.uhd .avt { display: inline; float: left; margin-left: -140px; }
+			.uhd .avt img { padding: 5px; width: 120px; height: auto; border: none; }
+.flw_hd .tns { padding: 0; border: 1px solid #DFDFDF; background: #F8F8F8; border-radius: 5px; }
+	.flw_hd .tns th, .flw_hd .tns td { padding: 5px; }
+	.flw_hd .tns th { border-right: 1px dashed #DFDFDF; }
+	.flw_hd .tns span { font-size: 16px; }
+	.flw_hd .tns p a { color: #369; font-weight: 700; }
+.flw_hd .flw_btn_fo, .flw_hd .pm2 { text-indent: -9999px; margin-top: -8px; width: 80px; height: 33px; background: url({STYLEIMGDIR}/flw_btn.png) no-repeat 0 0; }
+	.flw_hd .pm2 { margin-left: 10px; width: 90px; background-image: url({STYLEIMGDIR}/pmto.png); }
+.flw_hd .flw_specialfo, .flw_hd .flw_specialunfo { float: left; margin: 0 10px; }
+
+/* 瀑布流布局 by Pony 1204121803 */
+.waterfall { position: relative; margin-top: 15px; }
+	.waterfall li { margin: 0 10px 10px 0; padding: 0 0 3px; text-align: left; border-width: 1px 0 0; border-top: 1px solid #EAEAEA; background: url({STYLEIMGDIR}/bg_waterfall.png) no-repeat 100% 100%; }
+	.waterfall .c, .waterfall h3 { padding: 10px; border: solid #EAEAEA; border-width: 0 1px; background-color: #F8F8F8; }
+		.waterfall .c { overflow: hidden; padding-bottom: 0; max-height: 800px; }
+		.waterfall .c .nopic { display: block; background:{WRAPBG} url({IMGDIR}/nophototiny.png) no-repeat 50% 50%; cursor: pointer; }
+	.waterfall .auth { padding: 0 10px 10px; border-width: 0 1px 1px; border-style: solid; border-color: transparent #EAEAEA #B9B9B9; background: #F8F8F8; }
+		.waterfall .auth img { display: inline-block; margin: 0 1px; }
+		
+/* 侧边管理列表 by Alice 1306041521 */
+.notice_pm, .notice_mypost, .notice_interactive, .notice_system, .notice_manage, .notice_app{ margin-left:10px;}
+
+
+/*改***************************************************************************/
+
+
+
+.tl .bm_c th s.xst{}
+.tl .bm_c th s.xst{ color:}
+.tl tr{ border-bottom:1.5px dotted #cccccc;}
+
+	
+
+/*论坛*/
+
+.bm{ border-radius:0px;}
+
+
+/*帖子列表页*/
+

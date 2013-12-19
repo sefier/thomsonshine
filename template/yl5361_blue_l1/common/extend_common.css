@@ -1,0 +1,33 @@
+/* 重定义css样式 */
+body { background: #F7FBFE url({IMGDIR}/yl5361_bg.jpg) no-repeat 50% 25px;}
+.yl5361_wp1{margin: 0 auto 0 auto; width:960px;}
+.yl5361_wp2{margin: 0 auto 0 auto; width:100%; background:#ECECEC url({IMGDIR}/yl5361_wp2_bg.jpg) repeat-x 100% 0;}
+#toptb{background:url({IMGDIR}/yl5361_top.png); border:none; height:30px;}
+#nv { height: 45px; overflow: hidden; background:#2273CC url({IMGDIR}/nv.png);}
+#nv li { height: 45px; line-height: 44px; font-size: 15px;}
+.ie_all #nv li { line-height: 45px; }
+#nv li a { height: 45px; margin-left: 0; padding: 0 18px; text-decoration: none;}
+#nv li.a { padding-right: 10px; }
+#nv li a:hover, #nv li.hover a, #nv li.hover a:hover { background-image: none; }
+#nv li.a a, #nv li.a a:hover { padding: 0 7px 0 19px; background: url({IMGDIR}/nv_a.png) no-repeat 0 -45px; color: {MENUHOVERTEXT} !important; }
+#scbar { border-radius: 0 0 4px 4px; height: 45px; border: solid #E3E3E3; border-width: 0 1px 1px; background:#FFF url({IMGDIR}/yl5361_scbar.png) repeat-x 0 100%;}
+.scbar_btn_td { width: 60px; background: url({IMGDIR}/search.png) no-repeat 0 -142px;}
+.scbar_type_td {width: 50px;}
+#qmenu { float: right; display: inline; margin: 8px 0; padding: 0 12px 0 0; width: 83px; height: 26px; background: url({IMGDIR}/qmenu.png) no-repeat 0 0; line-height: 26px; text-align: center; color: #0E54AC; font-weight: 700; text-shadow: 0 1px 0 #FFF; overflow: hidden; }
+#qmenu:hover { text-decoration: none; }
+#qmenu.a { position: relative; z-index: 302; background-position: 0 -30px; }
+#qmenu_menu {margin-top: -1px; padding: 20px 5px 10px; border-color: #9A9A9A;}
+.fl{ border:0px; background:none;}
+.fl .bm{ margin-bottom:10px;}
+.fl .bm_c {border-bottom: 1px solid #E3E3E3; border-left: 1px solid #E3E3E3; border-right: 1px solid #E3E3E3; background:#FFF url({IMGDIR}/yl5361_title_bg.png) repeat-x 0 100%;}
+.fl .bm_h{ height:40px; line-height:40px; overflow:hidden; border:0px; padding-left:0px; padding-right:15px; background:url({IMGDIR}/yl5361_fl_bm_r.gif) no-repeat 100% 0;}
+.fl .bm_h h2{ float:left; font-size:14px; height:40px; padding-left:25px; background:url({IMGDIR}/yl5361_fl_bm_l.gif) no-repeat 0 0; }
+.fl .bm .bm_h h2 a{ color:#0E54AC; background:url({IMGDIR}/yl5361_fl_bm_c.gif) no-repeat 100% 100%;}
+#f_pst .bm_c, #f_pst .plc{background:#FFF url({IMGDIR}/yl5361_title_bg.png) repeat-x 0 100%;}
+.bm_h .o img { margin-top: 14px;}
+.bm_h {border-bottom: 1px solid {WRAPBORDERCOLOR};}
+#ft {border-top: none; padding: 20px 0 40px;}
+.plugin .bm_h { height: 40px;border: none; background:url({IMGDIR}/yl5361_bm_h.jpg) repeat-x 0 100%; line-height: 36px;}
+.pnc, a.pnc {border-color: #2455A0; background-color: #2455A0;}
+.bmw .bm_h, .bmw .bm_h a {color: #F7FBFE;}
+.fl .bm,.fl .bm_c,.bm,.bdl,.pnpost .pn,.pgb a {border-radius: 4px;}

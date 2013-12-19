@@ -1,0 +1,10 @@
+/* ----------------------------------
+Self-adaption Width CSS file for Discuz! X
+(C) Comsenz Inc.
+http://www.comsenz.com
+Created & Modified by Pony.
+---------------------------------- */
+#nv { background:url({IMGDIR}/nv.png) repeat-x 0 100%; }
+#nv, #mu { border: none;}
+.yl5361_wp1 { width: 98%; }
+#mu ul {border: solid #E3E3E3;border-width: 0 1px 1px;}

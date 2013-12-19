@@ -1,0 +1,75 @@
+/* CSS Document */
+
+
+.bdl_h{font-size:16px;}
+.bdl{background-color:#fff; border: solid 1px #C9C9C9;border-radius:6px }
+.bdl dl.a dd{border-bottom: dashed 1px #DDDDDD; margin:0 5px;}
+.bdl dd.bdl_a a {background-color: #BEE4F7; font-size:13px}
+
+.xs2 {font-size: 16px !important;}
+#threadlist{border-radius: 0 0  6px 6px;}
+.ttp li{padding-bottom:0px;  }
+.ttp .a a, .ttp .a a:hover {background:url(../image/titlebg7.jpg) repeat-x;border-radius: 6px 6px 0 0 ; color:#FFFFFF}
+.tsm .a a {background-color: #0080FF;padding: 5px; color:#FFFFFF}
+.ttp a, .ttp strong {padding:8px 8px 9px}
+.ttp{height:35px;background:url(../image/titlebg6.jpg) repeat-x; border: solid 1px #C9C9C9; border-bottom:0px;}
+#fontsearch .a .xi2{background:#0080FF;padding: 5px;}
+
+.tsm th{font-weight:600; letter-spacing:5px;}
+
+
+
+
+.tjtp{ margin-top:10px;}
+.tjtp .title{background:#fff; height:35px; line-height:35px;border-bottom: solid 3px #DDDDDD; margin:0 10px;}
+.tjtp .ml li {padding: 0 5px 5px 2px;}
+.tjtp .ml img:hover{opacity:0.8;filter: alpha(opacity=50);}
+.tjtp .ml li a{font-size:13px; font-family:"Î¢ÈíÑÅºÚ"; color:#000}
+
+
+.mn .tl .tf a {padding: 7px 5px 8px; border-radius: 0px;background-color: rgba(217, 228, 249, 0);border-radius:6px 6px 0 0}
+.ie6 .mn .tl .tf a ,.ie7 .mn .tl .tf a{float: none;}
+.mn .tl .th{background:url(../image/titlebg6.jpg) repeat-x;border-bottom: solid 3px #00A5D9;}
+.mn .tl .th tr:hover th,.mn .tl .th tr:hover td {background:url(../image/titlebg6.jpg) repeat-x;}
+.mn .tl .tf .showmenu {padding-right: 15px;background-image: url(../image/arw_l.gif) ;} 
+.mn .tl .tf .showmenu:hover {padding-right: 15px;background-image: url(../image/arw_d.gif) ;} 
+.mn .tl .th .xw1{background:url(../image/titlebg7.jpg) repeat-x}
+.mn .tl .th ,.mn .tl th{ padding:0px;}
+
+.tl .xst, .newthread .new em, .newthread .new em a{ font-size:14px !important; }
+.tl th a:visited, .tl td.fn a:visited{color:#333}
+.tl .num {text-align: center; color:#00A5D9}
+.tl .th td, .tl .th th {vertical-align: inherit;}
+.tl .by{color:#00A5D9}
+
+
+#f_pst .bm_h{background:url(../image/titlebg3.jpg) no-repeat; height:48px; line-height:48px; padding-left:45px;}
+#f_pst .bm_h h2{ color:#00A4D8; font-size:18px; font-family:"Î¢ÈíÑÅºÚ"; font-weight:600}
+#f_pst #fastpostsubmit{border-radius:0px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
