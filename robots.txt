@@ -4,6 +4,7 @@
 
 User-agent: *
 Disallow: /api/
+Disallow: /mysql/
 Disallow: /data/
 Disallow: /source/
 Disallow: /install/
