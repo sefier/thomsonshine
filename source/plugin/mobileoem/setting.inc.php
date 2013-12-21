@@ -4,7 +4,7 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
  *      This is NOT a freeware, use is subject to license terms
  *
- *      $Id: setting.inc.php 34241 2013-11-21 08:34:48Z nemohou $
+ *      $Id: setting.inc.php 34236 2013-11-21 01:13:12Z nemohou $
  */
 
 if(!defined('IN_DISCUZ') || !defined('IN_ADMINCP')) {
@@ -34,7 +34,7 @@ foreach($tplnames as $tpldir => $name) {
 	if(is_dir($_oemdir)) {
 		$_key = substr(md5($tpldir),10, 9);
 		$_cleardir = preg_replace('/^'.$pqroot.'/', '', $tpldir);
-		$oemtpls[$_key] = $_cleardir;
+		$oemtpls[$_key] = $_cleardir;	
 		$setarray[] = array($_key, $name);
 		if($_cleardir == $_G['setting']['mobileoemtpldir']) {
 			$mobileoemtpldir = $_key;

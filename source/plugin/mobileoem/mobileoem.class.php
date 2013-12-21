@@ -4,19 +4,19 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
  *      This is NOT a freeware, use is subject to license terms
  *
- *      $Id: mobileoem.class.php 34241 2013-11-21 08:34:48Z nemohou $
+ *      $Id: mobileoem.class.php 34236 2013-11-21 01:13:12Z nemohou $
  */
 
 class plugin_mobileoem{
 	function plugin_mobileoem() {
-
-	}
-
+		
+	}	
+	
 	function checkCloud() {
 		global $_G;
-
+		
 		loadcache('mobileoem_data');
-		if(!$_G['cache']['mobileoem_data'] || (TIMESTAMP - $_G['cache']['mobileoem_data']['timestamp']) > 86400) {
+		if(!$_G['cache']['mobileoem_data'] || (TIMESTAMP - $_G['cache']['mobileoem_data']['timestamp']) > 86400) {			
 			try {
 				$cloud = Cloud::loadClass('Service_Client_OEM');
 				$clouddata = $cloud->checkApp();
@@ -33,7 +33,7 @@ class plugin_mobileoem{
 			$_G['cache']['mobileoem_data']['timestamp'] = TIMESTAMP;
 			savecache('mobileoem_data', $_G['cache']['mobileoem_data']);
 		}
-
+		
 		$useragent = strtolower($_SERVER['HTTP_USER_AGENT']);
 		if(strpos($useragent, 'iphone') !== false || strpos($useragent, 'ios') !== false) {
 			$this->platform = '&platform=ios';
@@ -76,7 +76,7 @@ class mobileplugin_mobileoem_forum extends plugin_mobileoem {
 			return '';
 		}
 	}
-
+	
 	function post_bottom_mobile_output() {
 		global $_G;
 		$this->checkCloud();

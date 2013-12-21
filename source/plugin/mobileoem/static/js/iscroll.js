@@ -22,6 +22,7 @@ var m = Math,
 	})(),
 	cssVendor = vendor ? '-' + vendor.toLowerCase() + '-' : '',
 
+	// Style properties
 	transform = prefixStyle('transform'),
 	transitionProperty = prefixStyle('transitionProperty'),
 	transitionDuration = prefixStyle('transitionDuration'),
@@ -29,6 +30,7 @@ var m = Math,
 	transitionTimingFunction = prefixStyle('transitionTimingFunction'),
 	transitionDelay = prefixStyle('transitionDelay'),
 
+    // Browser capabilities
 	isAndroid = (/android/gi).test(navigator.appVersion),
 	isIDevice = (/iphone|ipad/gi).test(navigator.appVersion),
 	isTouchPad = (/hp-tablet/gi).test(navigator.appVersion),
@@ -75,8 +77,10 @@ var m = Math,
 			clearTimeout;
 	})(),
 
+	// Helpers
 	translateZ = has3d ? ' translateZ(0)' : '',
 
+	// Constructor
 	iScroll = function (el, options) {
 		var that = this,
 			i;
@@ -85,6 +89,7 @@ var m = Math,
 		that.wrapper.style.overflow = 'hidden';
 		that.scroller = that.wrapper.children[0];
 
+		// Default options
 		that.options = {
 			hScroll: true,
 			vScroll: true,
@@ -100,6 +105,7 @@ var m = Math,
 			checkDOMChanges: false,		// Experimental
 			handleClick: true,
 
+			// Scrollbar
 			hScrollbar: true,
 			vScrollbar: true,
 			fixedScrollbar: isAndroid,
@@ -107,15 +113,18 @@ var m = Math,
 			fadeScrollbar: isIDevice && has3d,
 			scrollbarClass: '',
 
+			// Zoom
 			zoom: false,
 			zoomMin: 1,
 			zoomMax: 4,
 			doubleTapZoom: 2,
 			wheelAction: 'scroll',
 
+			// Snap
 			snap: false,
 			snapThreshold: 1,
 
+			// Events
 			onRefresh: null,
 			onBeforeScrollStart: function (e) { e.preventDefault(); },
 			onScrollStart: null,
@@ -130,26 +139,33 @@ var m = Math,
 			onZoomEnd: null
 		};
 
+		// User defined options
 		for (i in options) that.options[i] = options[i];
-
+		
+		// Set starting position
 		that.x = that.options.x;
 		that.y = that.options.y;
 
+		// Normalize options
 		that.options.useTransform = hasTransform && that.options.useTransform;
 		that.options.hScrollbar = that.options.hScroll && that.options.hScrollbar;
 		that.options.vScrollbar = that.options.vScroll && that.options.vScrollbar;
 		that.options.zoom = that.options.useTransform && that.options.zoom;
 		that.options.useTransition = hasTransitionEnd && that.options.useTransition;
 
+		// Helpers FIX ANDROID BUG!
+		// translate3d and scale doesn't work together!
+		// Ignoring 3d ONLY WHEN YOU SET that.options.zoom
 		if ( that.options.zoom && isAndroid ){
 			translateZ = '';
 		}
-
+		
+		// Set some default styles
 		that.scroller.style[transitionProperty] = that.options.useTransform ? cssVendor + 'transform' : 'top left';
 		that.scroller.style[transitionDuration] = '0';
 		that.scroller.style[transformOrigin] = '0 0';
 		if (that.options.useTransition) that.scroller.style[transitionTimingFunction] = 'cubic-bezier(0.33,0.66,0.66,1)';
-
+		
 		if (that.options.useTransform) that.scroller.style[transform] = 'translate(' + that.x + 'px,' + that.y + 'px)' + translateZ;
 		else that.scroller.style.cssText += ';position:absolute;top:' + that.y + 'px;left:' + that.x + 'px';
 
@@ -171,6 +187,7 @@ var m = Math,
 		}, 500);
 	};
 
+// Prototype
 iScroll.prototype = {
 	enabled: true,
 	x: 0,
@@ -181,7 +198,7 @@ iScroll.prototype = {
 	pagesX: [], pagesY: [],
 	aniTime: null,
 	wheelZoomCount: 0,
-
+	
 	handleEvent: function (e) {
 		var that = this;
 		switch(e.type) {
@@ -197,14 +214,14 @@ iScroll.prototype = {
 			case TRNEND_EV: that._transitionEnd(e); break;
 		}
 	},
-
+	
 	_checkDOMChanges: function () {
 		if (this.moved || this.zoomed || this.animating ||
 			(this.scrollerW == this.scroller.offsetWidth * this.scale && this.scrollerH == this.scroller.offsetHeight * this.scale)) return;
 
 		this.refresh();
 	},
-
+	
 	_scrollbar: function (dir) {
 		var that = this,
 			bar;
@@ -221,6 +238,7 @@ iScroll.prototype = {
 		}
 
 		if (!that[dir + 'ScrollbarWrapper']) {
+			// Create the scrollbar wrapper
 			bar = doc.createElement('div');
 
 			if (that.options.scrollbarClass) bar.className = that.options.scrollbarClass + dir.toUpperCase();
@@ -231,6 +249,7 @@ iScroll.prototype = {
 			that.wrapper.appendChild(bar);
 			that[dir + 'ScrollbarWrapper'] = bar;
 
+			// Create the scrollbar indicator
 			bar = doc.createElement('div');
 			if (!that.options.scrollbarClass) {
 				bar.style.cssText = 'position:absolute;z-index:100;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.9);' + cssVendor + 'background-clip:padding-box;' + cssVendor + 'box-sizing:border-box;' + (dir == 'h' ? 'height:100%' : 'width:100%') + ';' + cssVendor + 'border-radius:3px;border-radius:3px';
@@ -256,14 +275,15 @@ iScroll.prototype = {
 			that.vScrollbarProp = that.vScrollbarMaxScroll / that.maxScrollY;
 		}
 
+		// Reset position
 		that._scrollbarPos(dir, true);
 	},
-
+	
 	_resize: function () {
 		var that = this;
 		setTimeout(function () { that.refresh(); }, isAndroid ? 200 : 0);
 	},
-
+	
 	_pos: function (x, y) {
 		if (this.zoomed) return;
 
@@ -317,7 +337,7 @@ iScroll.prototype = {
 		that[dir + 'ScrollbarWrapper'].style.opacity = hidden && that.options.hideScrollbar ? '0' : '1';
 		that[dir + 'ScrollbarIndicator'].style[transform] = 'translate(' + (dir == 'h' ? pos + 'px,0)' : '0,' + pos + 'px)') + translateZ;
 	},
-
+	
 	_start: function (e) {
 		var that = this,
 			point = hasTouch ? e.touches[0] : e,
@@ -340,6 +360,7 @@ iScroll.prototype = {
 		that.dirX = 0;
 		that.dirY = 0;
 
+		// Gesture start
 		if (that.options.zoom && hasTouch && e.touches.length > 1) {
 			c1 = m.abs(e.touches[0].pageX-e.touches[1].pageX);
 			c2 = m.abs(e.touches[0].pageY-e.touches[1].pageY);
@@ -353,6 +374,7 @@ iScroll.prototype = {
 
 		if (that.options.momentum) {
 			if (that.options.useTransform) {
+				// Very lame general purpose alternative to CSSMatrix
 				matrix = getComputedStyle(that.scroller, null)[transform].replace(/[^0-9\-.,]/g, '').split(',');
 				x = +(matrix[12] || matrix[4]);
 				y = +(matrix[13] || matrix[5]);
@@ -360,7 +382,7 @@ iScroll.prototype = {
 				x = +getComputedStyle(that.scroller, null).left.replace(/[^0-9-]/g, '');
 				y = +getComputedStyle(that.scroller, null).top.replace(/[^0-9-]/g, '');
 			}
-
+			
 			if (x != that.x || y != that.y) {
 				if (that.options.useTransition) that._unbind(TRNEND_EV);
 				else cancelFrame(that.aniTime);
@@ -386,7 +408,7 @@ iScroll.prototype = {
 		that._bind(END_EV, window);
 		that._bind(CANCEL_EV, window);
 	},
-
+	
 	_move: function (e) {
 		var that = this,
 			point = hasTouch ? e.touches[0] : e,
@@ -399,6 +421,7 @@ iScroll.prototype = {
 
 		if (that.options.onBeforeScrollMove) that.options.onBeforeScrollMove.call(that, e);
 
+		// Zoom
 		if (that.options.zoom && hasTouch && e.touches.length > 1) {
 			c1 = m.abs(e.touches[0].pageX - e.touches[1].pageX);
 			c2 = m.abs(e.touches[0].pageY - e.touches[1].pageY);
@@ -425,6 +448,7 @@ iScroll.prototype = {
 		that.pointX = point.pageX;
 		that.pointY = point.pageY;
 
+		// Slow down if outside of the boundaries
 		if (newX > 0 || newX < that.maxScrollX) {
 			newX = that.options.bounce ? that.x + (deltaX / 2) : newX >= 0 || that.maxScrollX >= 0 ? 0 : that.maxScrollX;
 		}
@@ -441,6 +465,7 @@ iScroll.prototype = {
 			return;
 		}
 
+		// Lock direction
 		if (that.options.lockDirection) {
 			if (that.absDistX > that.absDistY + 5) {
 				newY = that.y;
@@ -461,10 +486,10 @@ iScroll.prototype = {
 			that.startX = that.x;
 			that.startY = that.y;
 		}
-
+		
 		if (that.options.onScrollMove) that.options.onScrollMove.call(that, e);
 	},
-
+	
 	_end: function (e) {
 		if (hasTouch && e.touches.length !== 0) return;
 
@@ -496,10 +521,10 @@ iScroll.prototype = {
 
 			that.x = that.originX - that.originX * that.lastScale + that.x;
 			that.y = that.originY - that.originY * that.lastScale + that.y;
-
+			
 			that.scroller.style[transitionDuration] = '200ms';
 			that.scroller.style[transform] = 'translate(' + that.x + 'px,' + that.y + 'px) scale(' + that.scale + ')' + translateZ;
-
+			
 			that.zoomed = false;
 			that.refresh();
 
@@ -510,6 +535,7 @@ iScroll.prototype = {
 		if (!that.moved) {
 			if (hasTouch) {
 				if (that.doubleTapTimer && that.options.zoom) {
+					// Double tapped
 					clearTimeout(that.doubleTapTimer);
 					that.doubleTapTimer = null;
 					if (that.options.onZoomStart) that.options.onZoomStart.call(that, e);
@@ -523,6 +549,7 @@ iScroll.prototype = {
 					that.doubleTapTimer = setTimeout(function () {
 						that.doubleTapTimer = null;
 
+						// Find the last touched element
 						target = point.target;
 						while (target.nodeType != 1) target = target.parentNode;
 
@@ -559,6 +586,7 @@ iScroll.prototype = {
 		if (momentumX.dist || momentumY.dist) {
 			newDuration = m.max(m.max(momentumX.time, momentumY.time), 10);
 
+			// Do we need to snap?
 			if (that.options.snap) {
 				distX = newPosX - that.absStartX;
 				distY = newPosY - that.absStartY;
@@ -577,6 +605,7 @@ iScroll.prototype = {
 			return;
 		}
 
+		// Do we need to snap?
 		if (that.options.snap) {
 			distX = newPosX - that.absStartX;
 			distY = newPosY - that.absStartY;
@@ -593,7 +622,7 @@ iScroll.prototype = {
 		that._resetPos(200);
 		if (that.options.onTouchEnd) that.options.onTouchEnd.call(that, e);
 	},
-
+	
 	_resetPos: function (time) {
 		var that = this,
 			resetX = that.x >= 0 ? 0 : that.x < that.maxScrollX ? that.maxScrollX : that.x,
@@ -636,27 +665,27 @@ iScroll.prototype = {
 		} else {
 			return;
 		}
-
+		
 		if (that.options.wheelAction == 'zoom') {
 			deltaScale = that.scale * Math.pow(2, 1/3 * (wheelDeltaY ? wheelDeltaY / Math.abs(wheelDeltaY) : 0));
 			if (deltaScale < that.options.zoomMin) deltaScale = that.options.zoomMin;
 			if (deltaScale > that.options.zoomMax) deltaScale = that.options.zoomMax;
-
+			
 			if (deltaScale != that.scale) {
 				if (!that.wheelZoomCount && that.options.onZoomStart) that.options.onZoomStart.call(that, e);
 				that.wheelZoomCount++;
-
+				
 				that.zoom(e.pageX, e.pageY, deltaScale, 400);
-
+				
 				setTimeout(function() {
 					that.wheelZoomCount--;
 					if (!that.wheelZoomCount && that.options.onZoomEnd) that.options.onZoomEnd.call(that, e);
 				}, 400);
 			}
-
+			
 			return;
 		}
-
+		
 		deltaX = that.x + wheelDeltaX;
 		deltaY = that.y + wheelDeltaY;
 
@@ -665,23 +694,28 @@ iScroll.prototype = {
 
 		if (deltaY > that.minScrollY) deltaY = that.minScrollY;
 		else if (deltaY < that.maxScrollY) deltaY = that.maxScrollY;
-
+    
 		if (that.maxScrollY < 0) {
 			that.scrollTo(deltaX, deltaY, 0);
 		}
 	},
-
+	
 	_transitionEnd: function (e) {
 		var that = this;
 
 		if (e.target != that.scroller) return;
 
 		that._unbind(TRNEND_EV);
-
+		
 		that._startAni();
 	},
 
 
+	/**
+	*
+	* Utilities
+	*
+	*/
 	_startAni: function () {
 		var that = this,
 			startX = that.x, startY = that.y,
@@ -690,19 +724,19 @@ iScroll.prototype = {
 			animate;
 
 		if (that.animating) return;
-
+		
 		if (!that.steps.length) {
 			that._resetPos(400);
 			return;
 		}
-
+		
 		step = that.steps.shift();
-
+		
 		if (step.x == startX && step.y == startY) step.time = 0;
 
 		that.animating = true;
 		that.moved = true;
-
+		
 		if (that.options.useTransition) {
 			that._transitionTime(step.time);
 			that._pos(step.x, step.y);
@@ -748,6 +782,7 @@ iScroll.prototype = {
 			newDist = (speed * speed) / (2 * deceleration),
 			newTime = 0, outsideDist = 0;
 
+		// Proportinally reduce speed if we are outside of the boundaries
 		if (dist > 0 && newDist > maxDistUpper) {
 			outsideDist = size / (6 / (newDist / speed * deceleration));
 			maxDistUpper = maxDistUpper + outsideDist;
@@ -769,12 +804,12 @@ iScroll.prototype = {
 	_offset: function (el) {
 		var left = -el.offsetLeft,
 			top = -el.offsetTop;
-
+			
 		while (el = el.offsetParent) {
 			left -= el.offsetLeft;
 			top -= el.offsetTop;
 		}
-
+		
 		if (el != this.wrapper) {
 			left *= this.scale;
 			top *= this.scale;
@@ -789,6 +824,7 @@ iScroll.prototype = {
 			page, time,
 			sizeX, sizeY;
 
+		// Check page X
 		page = that.pagesX.length - 1;
 		for (i=0, l=that.pagesX.length; i<l; i++) {
 			if (x >= that.pagesX[i]) {
@@ -802,6 +838,7 @@ iScroll.prototype = {
 		sizeX = sizeX ? m.abs(that.x - x) / sizeX * 500 : 0;
 		that.currPageX = page;
 
+		// Check page Y
 		page = that.pagesY.length-1;
 		for (i=0; i<page; i++) {
 			if (y >= that.pagesY[i]) {
@@ -815,6 +852,7 @@ iScroll.prototype = {
 		sizeY = sizeY ? m.abs(that.y - y) / sizeY * 500 : 0;
 		that.currPageY = page;
 
+		// Snap with constant speed (proportional duration)
 		time = m.round(m.max(sizeX, sizeY)) || 200;
 
 		return { x: x, y: y, time: time };
@@ -829,31 +867,38 @@ iScroll.prototype = {
 	},
 
 
+	/**
+	*
+	* Public methods
+	*
+	*/
 	destroy: function () {
 		var that = this;
 
 		that.scroller.style[transform] = '';
 
+		// Remove the scrollbars
 		that.hScrollbar = false;
 		that.vScrollbar = false;
 		that._scrollbar('h');
 		that._scrollbar('v');
 
+		// Remove the event listeners
 		that._unbind(RESIZE_EV, window);
 		that._unbind(START_EV);
 		that._unbind(MOVE_EV, window);
 		that._unbind(END_EV, window);
 		that._unbind(CANCEL_EV, window);
-
+		
 		if (!that.options.hasTouch) {
 			that._unbind('DOMMouseScroll');
 			that._unbind('mousewheel');
 		}
-
+		
 		if (that.options.useTransition) that._unbind(TRNEND_EV);
-
+		
 		if (that.options.checkDOMChanges) clearInterval(that.checkDOMTime);
-
+		
 		if (that.options.onDestroy) that.options.onDestroy.call(that);
 	},
 
@@ -889,6 +934,7 @@ iScroll.prototype = {
 		that.wrapperOffsetLeft = -offset.left;
 		that.wrapperOffsetTop = -offset.top;
 
+		// Prepare snap
 		if (typeof that.options.snap == 'string') {
 			that.pagesX = [];
 			that.pagesY = [];
@@ -920,6 +966,7 @@ iScroll.prototype = {
 			if (that.maxScrollY%that.wrapperH) that.pagesY[that.pagesY.length] = that.maxScrollY - that.pagesY[that.pagesY.length-1] + that.pagesY[that.pagesY.length-1];
 		}
 
+		// Prepare the scrollbars
 		that._scrollbar('h');
 		that._scrollbar('v');
 
@@ -937,7 +984,7 @@ iScroll.prototype = {
 		that.stop();
 
 		if (!step.length) step = [{ x: x, y: y, time: time, relative: relative }];
-
+		
 		for (i=0, l=step.length; i<l; i++) {
 			if (step[i].relative) { step[i].x = that.x - step[i].x; step[i].y = that.y - step[i].y; }
 			that.steps.push({ x: step[i].x, y: step[i].y, time: step[i].time || 0 });
@@ -964,7 +1011,7 @@ iScroll.prototype = {
 
 	scrollToPage: function (pageX, pageY, time) {
 		var that = this, x, y;
-
+		
 		time = time === undefined ? 400 : time;
 
 		if (that.options.onScrollStart) that.options.onScrollStart.call(that);
@@ -995,15 +1042,16 @@ iScroll.prototype = {
 		this._resetPos(0);
 		this.enabled = false;
 
+		// If disabled after touchstart we make sure that there are no left over events
 		this._unbind(MOVE_EV, window);
 		this._unbind(END_EV, window);
 		this._unbind(CANCEL_EV, window);
 	},
-
+	
 	enable: function () {
 		this.enabled = true;
 	},
-
+	
 	stop: function () {
 		if (this.options.useTransition) this._unbind(TRNEND_EV);
 		else cancelFrame(this.aniTime);
@@ -1011,7 +1059,7 @@ iScroll.prototype = {
 		this.moved = false;
 		this.animating = false;
 	},
-
+	
 	zoom: function (x, y, scale, time) {
 		var that = this,
 			relScale = scale / that.scale;
@@ -1035,7 +1083,7 @@ iScroll.prototype = {
 		that.scroller.style[transform] = 'translate(' + that.x + 'px,' + that.y + 'px) scale(' + scale + ')' + translateZ;
 		that.zoomed = false;
 	},
-
+	
 	isReady: function () {
 		return !this.moved && !this.zoomed && !this.animating;
 	}

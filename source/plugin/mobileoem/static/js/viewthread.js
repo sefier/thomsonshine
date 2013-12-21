@@ -4,7 +4,7 @@ function reloadImage(obj, code) {
 	obj.innerHTML=unescape(code);
 }
 
-function autoLoadNextPage(url, text, nextpage) {
+function autoLoadNextPage(url, text, nextpage) {				
 	var l = new Object();
 	l.url = url;
 	l.text = text;
@@ -23,10 +23,10 @@ function autoLoadNextPage(url, text, nextpage) {
 	l.afterTouch = function () {
 		$(l.more).remove();
 	}
-	l.afterUpdate = function (first) {
+	l.afterUpdate = function (first) {		
 		var result = l.result.Variables;
 		if(result.webview_page) {
-			if(!first) {
+			if(!first) {			
 				if($(l.morepage+'_'+result.page)) {
 					$(l.morepage+'_'+result.page).remove();
 				}
@@ -44,19 +44,19 @@ function autoLoadNextPage(url, text, nextpage) {
 			}
 		}
 		imgwidth();
-	};
+	};			
 	$(window).bind("touchstart", function(event) {
 		var touch = event.originalEvent.touches[0];
 		startY = touch.pageY;
 		l.py = startY;
 		l.beforeTouch();
-	});
+	});	
 	$(window).bind("touchmove", function(event) {
 		var touch = event.originalEvent.touches[0];
 		startY = touch.pageY;
-		l.move = startY - l.py;
-	});
-	$(window).bind("touchend", function(event) {
+		l.move = startY - l.py;				
+	});		
+	$(window).bind("touchend", function(event) {				
 		if(l.running) {
 			return;
 		}
@@ -64,14 +64,14 @@ function autoLoadNextPage(url, text, nextpage) {
 		if(l.move < -10) {
 			if($(window).height() == $(document).height() || $(document).scrollTop() + $(window).height() > $(document).height() - 10){
 				if(l.nextpage > 1) {
-					l.running = true;
+					l.running = true;					
 					$.getJSON(l.url + l.nextpage, function (result) {
 						l.result = result;
 						l.running = false;
 						l.afterUpdate();
 					});
 				} else {
-					l.running = true;
+					l.running = true;					
 					$.getJSON(l.url + '&more=1', function (result) {
 						l.result = result;
 						l.running = false;
@@ -86,7 +86,7 @@ function autoLoadNextPage(url, text, nextpage) {
 
 function imgwidth() {
 	$('.img img').each(function(){
-		var dwidth = $('.detail_wrap').width() - 30, rwidth = $(this).width(), rheight = $(this).height();
+		var dwidth = $('.detail_wrap').width() - 30, rwidth = $(this).width(), rheight = $(this).height();				
 		if(rwidth > dwidth) {
 			$(this).width(dwidth);
 			if(rheight) {
