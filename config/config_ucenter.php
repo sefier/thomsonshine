@@ -13,7 +13,7 @@ define('UC_DBCONNECT', 0);
 
 define('UC_CHARSET', 'utf-8');
 define('UC_KEY', 'O5L6R4H1z9R3EdDer6e6B9pfZ4D6F6Bb6ca62e15DcT6g988c3ob1cT5qbdfZ6Bd');
-define('UC_API', 'http://www.test3g.com/use');
+define('UC_API', 'http://www.sjyyt.com/use');
 define('UC_APPID', '15');
 define('UC_IP', '');
 define('UC_PPP', 20);
