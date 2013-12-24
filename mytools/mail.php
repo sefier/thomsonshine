@@ -1,4 +1,15 @@
+<?php
+if($_GET['p'] != 'sjyyt.com')
+  exit;
 
+include_once('../source/class/class_core.php');
+include_once('../source/function/function_core.php');
+
+if($_POST['send'] == '发送'){
+  $result = sendmail($_POST['address'], $_POST['subject'], $_POST['body'], $from = 'webmaster@sjyyt.com')
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,9 +28,6 @@
     <!-- Custom styles for this template -->
     <link href="common/css/sign.css" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -30,16 +38,19 @@
   <body>
 
     <div class="container">
+      <?php if($result === true) { ?>
       <div class="alert alert-success">恭喜，邮件发送成功</div>
+      <?php }elseif($result === false){ ?>
       <div class="alert alert-danger">邮件发送失败，请稍后重试</div>
+      <?php } ?>
       <form class="form-signin" role="form">
         <h2 class="form-signin-heading">发送邮件</h2>
-        <input type="text" class="form-control" placeholder="邮件地址" required autofocus>
-        <input type="text" class="form-control" placeholder="邮件标题" required>
-        <textarea class="form-control"  placeholder="邮件正文" rows="3" rquired></textarea>
-        <input type="text" class="form-control" placeholder="发件地址(默认webmaster)">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">发送</button>
-        <a class="btn btn-lg btn-default btn-block">查看发送记录</a>
+        <input type="text" name="address" class="form-control" placeholder="邮件地址" required autofocus>
+        <input type="text" name="subject" class="form-control" placeholder="邮件标题" required>
+        <textarea name="body" class="form-control"  placeholder="邮件正文" rows="3" rquired></textarea>
+        <!-- <input type="text" class="form-control" placeholder="发件地址(默认webmaster)"> -->
+        <button name="send" class="btn btn-lg btn-primary btn-block" type="submit">发送</button>
+        <!-- <a class="btn btn-lg btn-default btn-block">查看发送记录</a> -->
       </form>
 
     </div> <!-- /container -->
