@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>管理员发送邮件工具</title>
 
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.css" rel="stylesheet">
@@ -30,15 +30,16 @@
   <body>
 
     <div class="container">
-
+      <div class="alert alert-success">恭喜，邮件发送成功</div>
+      <div class="alert alert-danger">邮件发送失败，请稍后重试</div>
       <form class="form-signin" role="form">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" class="form-control" placeholder="Email address" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <h2 class="form-signin-heading">发送邮件</h2>
+        <input type="text" class="form-control" placeholder="邮件地址" required autofocus>
+        <input type="text" class="form-control" placeholder="邮件标题" required>
+        <textarea class="form-control"  placeholder="邮件正文" rows="3" rquired></textarea>
+        <input type="text" class="form-control" placeholder="发件地址(默认webmaster)">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">发送</button>
+        <a class="btn btn-lg btn-default btn-block">查看发送记录</a>
       </form>
 
     </div> <!-- /container -->
