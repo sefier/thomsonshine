@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 if($_GET['p'] != 'sjyyt.com')
   exit;
 
@@ -6,7 +7,7 @@ include_once('../source/class/class_core.php');
 include_once('../source/function/function_core.php');
 
 if($_POST['send'] == '发送'){
-  $result = sendmail($_POST['address'], $_POST['subject'], $_POST['body'], $from = 'webmaster@sjyyt.com')
+  $result = sendmail($_POST['address'], $_POST['subject'], $_POST['body'], $from = 'webmaster@sjyyt.com');
 }
 
 ?>
