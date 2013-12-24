@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-if($_GET['p'] != 'sjyyt.com')
+if($_REQUEST['p'] != 'sjyyt.com')
   exit;
 
 include_once('../source/class/class_core.php');
@@ -44,8 +44,9 @@ if($_POST['send'] == '发送'){
       <?php }elseif($result === false){ ?>
       <div class="alert alert-danger">邮件发送失败，请稍后重试</div>
       <?php } ?>
-      <form class="form-signin" role="form">
+      <form class="form-signin" role="form" method="post">
         <h2 class="form-signin-heading">发送邮件</h2>
+        <input type="hidden" name="p" value="sjyyt.com">
         <input type="text" name="address" class="form-control" placeholder="邮件地址" required autofocus>
         <input type="text" name="subject" class="form-control" placeholder="邮件标题" required>
         <textarea name="body" class="form-control"  placeholder="邮件正文" rows="3" rquired></textarea>
