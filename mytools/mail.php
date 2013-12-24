@@ -1,23 +1,21 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', true);
-
+define('IN_DISCUZ', true);
 if($_REQUEST['p'] != 'sjyyt.com')
   exit;
 
 include_once('../source/class/class_core.php');
 include_once('../source/function/function_core.php');
+
 $cachelist = array();
 $discuz = C::app();
-
 $discuz->cachelist = $cachelist;
 $discuz->init_cron = false;
 $discuz->init_setting = false;
 $discuz->init_user = false;
 $discuz->init_session = false;
 $discuz->init_misc = false;
-@header('Content-Type: text/html; charset=gbk');
-
 $discuz->init();
 
 if($_POST['address']){
