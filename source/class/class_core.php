@@ -207,7 +207,7 @@ class core
 class C extends core {}
 class DB extends discuz_database {}
 
-$urls = array('http://test.test3g.com');
+$urls = array('http://test.sjyyt.com');
 if(in_array($_SERVER['HTTP_REFERER'],$urls))
 {
  echo 'FROM ARRAY';
