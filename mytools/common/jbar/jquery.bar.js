@@ -6,7 +6,7 @@
 			$this = $(this);
 			var o = $.meta ? $.extend({}, opts, $this.data()) : opts;
 			
-			$(document).ready(function(e){
+			$this.ready(function(e){
 				if(!$('.jbar').length){
 					timeout = setTimeout('$.fn.bar.removebar()',o.time);
 					var _message_span = $(document.createElement('span')).addClass('jbar-content').html(o.message);
