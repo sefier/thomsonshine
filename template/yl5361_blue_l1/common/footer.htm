@@ -33,7 +33,12 @@
 		<!--{/loop}-->
 		<script type="text/javascript">
 			var focusnum = $focusnum;
-			if(focusnum < 2) {
+			function getURLParameter(name) {
+		    return decodeURI(
+		      (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+		    );
+			}
+			if(focusnum < 2 || getURLParameter(ref) != 'test3g.com') {
 				$('focus_ctrl').style.display = 'none';
 			}
 			if(!$('focuscur').innerHTML) {
