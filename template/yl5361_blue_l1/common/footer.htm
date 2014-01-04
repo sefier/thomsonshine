@@ -45,7 +45,7 @@
 				var randomnum = parseInt(Math.round(Math.random() * focusnum));
 				$('focuscur').innerHTML = Math.max(1, randomnum);
 			}
-			if(getURLParameter('ref') != 'test3g.com'){
+			if(getURLParameter('ref') == 'test3g.com'){
 				showfocus();
 				var focusautoshow = window.setInterval('showfocus(\'next\', 1);', 5000);				
 			}
