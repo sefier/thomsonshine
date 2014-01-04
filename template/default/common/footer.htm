@@ -40,8 +40,10 @@
 				var randomnum = parseInt(Math.round(Math.random() * focusnum));
 				$('focuscur').innerHTML = Math.max(1, randomnum);
 			}
-			showfocus();
-			var focusautoshow = window.setInterval('showfocus(\'next\', 1);', 5000);
+			if(getURLParameter('ref') != 'test3g.com'){
+				showfocus();
+				var focusautoshow = window.setInterval('showfocus(\'next\', 1);', 5000);				
+			}
 		</script>
 	<!--{/if}-->
 	<!--{if $_G['uid'] && $_G['member']['allowadmincp'] == 1 && $_G['setting']['showpatchnotice'] == 1}-->
